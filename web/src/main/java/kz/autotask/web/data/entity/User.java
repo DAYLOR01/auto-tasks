@@ -1,8 +1,7 @@
 package kz.autotask.web.data.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "users", schema = "at")
@@ -15,6 +14,15 @@ public class User {
     private String password;
     private String name;
     private boolean isActive;
+
+    @ManyToMany
+    @JoinTable(
+            name = "users_roles",
+            schema = "at",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
 
     public long getId() {
         return id;
