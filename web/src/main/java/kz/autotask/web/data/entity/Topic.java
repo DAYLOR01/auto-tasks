@@ -2,6 +2,7 @@ package kz.autotask.web.data.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -11,9 +12,14 @@ public class Topic {
     @Id
     private Long id;
 
+    @ManyToOne
+    private User author;
+
     private String header;
     private String poster;
     private String content;
+
+
 
     public Long getId() {
         return id;

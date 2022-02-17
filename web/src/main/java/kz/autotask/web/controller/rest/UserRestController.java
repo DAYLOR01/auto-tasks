@@ -21,7 +21,8 @@ public class UserRestController {
     }
 
     @GetMapping("/all-users")
-    public Iterable<User> getUsers(){
+    public Iterable<User> getUsers(@RequestHeader("Authorization") String authToken){
+        System.out.println(jwtProvider.getLoginFromToken(authToken.substring(6)));
         return userService.findAll();
     }
 

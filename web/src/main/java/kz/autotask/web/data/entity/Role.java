@@ -14,8 +14,6 @@ public class Role {
     private String name;
     private int userPriority;
 
-
-
     public Integer getId() {
         return id;
     }

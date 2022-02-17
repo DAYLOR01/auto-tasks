@@ -16,7 +16,17 @@ public class Task {
     private Date assignDate;
     private Date inspirationDate;
     private Timestamp spentTime;
+
+    @ManyToOne
+    private User assignedUser;
+
+    @ManyToOne
+    private User authorUser;
+
     private boolean createdByExtApp;
+
+    @ManyToOne
+    private ExternalApp authorExternalApp;
 
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
