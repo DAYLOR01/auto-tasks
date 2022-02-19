@@ -1,14 +1,17 @@
 package kz.autotask.web.data.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "roles", schema = "at")
 public class Role {
 
     @Id
+    @SequenceGenerator(name="roles_id_seq",
+            sequenceName="roles_id_seq",
+            allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator="roles_id_seq")
     private Integer id;
 
     private String name;

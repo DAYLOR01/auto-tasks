@@ -19,7 +19,7 @@ public class User {
     private String username;
     private String password;
     private String name;
-    private boolean isActive;
+    private Boolean isActive;
 
     @ManyToMany
     @JoinTable(
@@ -38,6 +38,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "tag_id")
     )
     private List<Tag> tags;
+
+    @OneToMany(mappedBy = "assignedUser")
+    private List<Task> assignedTasks;
 
     public long getId() {
         return id;
@@ -89,5 +92,9 @@ public class User {
 
     public void setTags(List<Tag> tags) {
         this.tags = tags;
+    }
+
+    public List<Task> getAssignedTasks() {
+        return assignedTasks;
     }
 }

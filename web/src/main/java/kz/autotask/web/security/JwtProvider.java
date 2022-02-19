@@ -11,8 +11,14 @@ import java.util.Date;
 @Component
 public class JwtProvider {
 
+    private static final int BEARER_TOKEN_START_INDEX = 6;
+
     @Value("$(jwt.secret)")
     private String jwtSecret;
+
+    public static String getTokenFromHeader(String authHeader) {
+        return authHeader.substring(BEARER_TOKEN_START_INDEX);
+    }
 
     public String generateToken(String login) {
         Date date = Date.from(LocalDate.now().plusDays(15).atStartOfDay(ZoneId.systemDefault()).toInstant());

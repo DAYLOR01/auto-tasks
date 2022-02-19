@@ -7,6 +7,11 @@ import javax.persistence.*;
 public class Tag {
 
     @Id
+    @SequenceGenerator(name="tags_id_seq",
+            sequenceName="tags_id_seq",
+            allocationSize=1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE,
+            generator="tags_id_seq")
     private Integer id;
 
     private String name;
