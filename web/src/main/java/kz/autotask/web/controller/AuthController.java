@@ -1,5 +1,7 @@
-package kz.autotask.web.controller.rest;
+package kz.autotask.web.controller;
 
+import kz.autotask.web.controller.dto.RequestDto;
+import kz.autotask.web.controller.dto.ResponseDto;
 import kz.autotask.web.data.entity.User;
 import kz.autotask.web.security.JwtProvider;
 import kz.autotask.web.service.UserService;
@@ -18,19 +20,19 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public AuthResponse login(@RequestBody AuthRequest request) {
+    public ResponseDto.Auth login(@RequestBody RequestDto.Auth request) {
         User user = userService.findByUsernameAndPassword(request.username, request.password);
         String token = jwtProvider.generateToken(user.getUsername());
-        AuthResponse response = new AuthResponse();
+        ResponseDto.Auth response = new ResponseDto.Auth();
         response.token = token;
         return response;
     }
 
     @GetMapping("/login")
-    public UserShortResponse getLogin(@RequestHeader("Authorization") String authHeader) {
+    public ResponseDto.UserShort getLogin(@RequestHeader("Authorization") String authHeader) {
         String username = jwtProvider.getLoginFromToken(JwtProvider.getTokenFromHeader(authHeader));
         User user = userService.findByUsername(username);
-        UserShortResponse response = new UserShortResponse();
+        ResponseDto.UserShort response = new ResponseDto.UserShort();
         response.username = user.getUsername();
         response.name = user.getName();
         response.isActive = user.isActive();
@@ -40,14 +42,9 @@ public class AuthController {
 
 
     static class AuthResponse {
-        public String token;
+
     }
     static class AuthRequest {
         public String username, password;
-    }
-    static class UserShortResponse {
-        public String username, name;
-        public boolean isActive;
-        // TODO
     }
 }

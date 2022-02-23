@@ -15,14 +15,6 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    /*private final UserRepository userRepository;
-    private final PasswordEncoder passwordEncoder;
-
-    public UserServiceImpl(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }*/
-
     @Override
     public Iterable<User> findAll() {
         return userRepository.findAll();
@@ -31,6 +23,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
+    }
+
+    @Override
+    public User findActiveUserByUsername(String username) {
+        return userRepository.findByUsernameAndIsActiveIsTrue(username);
     }
 
     @Override

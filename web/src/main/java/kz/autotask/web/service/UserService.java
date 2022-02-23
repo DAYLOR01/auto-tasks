@@ -8,6 +8,8 @@ public interface UserService {
 
     User findByUsername(String username);
 
+    User findActiveUserByUsername(String username);
+
     User findByUsernameAndPassword(String username, String password);
 
 }
