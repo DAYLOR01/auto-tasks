@@ -3,48 +3,29 @@ package kz.autotask.web.controller;
 import kz.autotask.web.controller.dto.RequestDto;
 import kz.autotask.web.controller.dto.ResponseDto;
 import kz.autotask.web.data.entity.User;
+import kz.autotask.web.facade.AuthFacade;
 import kz.autotask.web.security.JwtProvider;
 import kz.autotask.web.service.UserService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("api")
+@CrossOrigin("http://localhost:8080")
 public class AuthController {
 
-    private final UserService userService;
-    private final JwtProvider jwtProvider;
+    private final AuthFacade authFacade;
 
-    public AuthController(UserService userService, JwtProvider jwtProvider) {
-        this.userService = userService;
-        this.jwtProvider = jwtProvider;
+    public AuthController(AuthFacade authFacade) {
+        this.authFacade = authFacade;
     }
 
     @PostMapping("/login")
     public ResponseDto.Auth login(@RequestBody RequestDto.Auth request) {
-        User user = userService.findByUsernameAndPassword(request.username, request.password);
-        String token = jwtProvider.generateToken(user.getUsername());
-        ResponseDto.Auth response = new ResponseDto.Auth();
-        response.token = token;
-        return response;
+        return authFacade.login(request);
     }
 
     @GetMapping("/login")
     public ResponseDto.UserShort getLogin(@RequestHeader("Authorization") String authHeader) {
-        String username = jwtProvider.getLoginFromToken(JwtProvider.getTokenFromHeader(authHeader));
-        User user = userService.findByUsername(username);
-        ResponseDto.UserShort response = new ResponseDto.UserShort();
-        response.username = user.getUsername();
-        response.name = user.getName();
-        response.isActive = user.isActive();
-        return response;
-    }
-
-
-
-    static class AuthResponse {
-
-    }
-    static class AuthRequest {
-        public String username, password;
+        return authFacade.getLogin(authHeader);
     }
 }

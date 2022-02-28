@@ -10,9 +10,7 @@ public class TagServiceImpl implements TagService {
 
     private final TagRepository tagRepository;
 
-    public TagServiceImpl(
-            TagRepository tagRepository
-    ) {
+    public TagServiceImpl(TagRepository tagRepository) {
         this.tagRepository = tagRepository;
     }
 

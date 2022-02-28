@@ -16,7 +16,7 @@ public class CustomUserDetails extends User implements UserDetails {
         this.setUsername(entity.getUsername());
         this.setPassword(entity.getPassword());
         this.setName(entity.getName());
-        this.setActive(entity.isActive());
+        this.setIsActive(entity.getIsActive());
         entity.getRoles().forEach(role -> this.authorities.add(new CustomGrantedAuthority(role)));
     }
 
@@ -27,21 +27,21 @@ public class CustomUserDetails extends User implements UserDetails {
 
     @Override
     public boolean isAccountNonExpired() {
-        return isActive();
+        return getIsActive();
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return isActive();
+        return getIsActive();
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return isActive();
+        return getIsActive();
     }
 
     @Override
     public boolean isEnabled() {
-        return isActive();
+        return getIsActive();
     }
 }

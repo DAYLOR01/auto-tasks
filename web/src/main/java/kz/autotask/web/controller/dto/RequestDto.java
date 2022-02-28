@@ -1,13 +1,21 @@
 package kz.autotask.web.controller.dto;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+import java.util.Set;
+
 public class RequestDto {
 
+    @Getter @Setter @NoArgsConstructor
     public static class Auth {
-        public String username, password;
+        private String username, password;
     }
 
+    @Getter @Setter @NoArgsConstructor
     public static class UserFull {
-        public String username, password, name;
-        public int mainTag;
+        private String username, password, name;
+        private Set<Integer> tags;
     }
 }

@@ -1,11 +1,16 @@
 package kz.autotask.web.data.entity;
 
+import kz.autotask.web.data.entity.enums.TaskStatus;
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
 @Entity
+@Getter @Setter
 @Table(name = "tasks", schema = "at")
 public class Task {
 
@@ -42,92 +47,4 @@ public class Task {
 
     @OneToMany(mappedBy = "task")
     private List<TaskHistory> history;
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getHeader() {
-        return header;
-    }
-
-    public void setHeader(String header) {
-        this.header = header;
-    }
-
-    public String getText() {
-        return text;
-    }
-
-    public void setText(String text) {
-        this.text = text;
-    }
-
-    public Date getAssignDate() {
-        return assignDate;
-    }
-
-    public void setAssignDate(Date assignDate) {
-        this.assignDate = assignDate;
-    }
-
-    public Date getInspirationDate() {
-        return inspirationDate;
-    }
-
-    public void setInspirationDate(Date inspirationDate) {
-        this.inspirationDate = inspirationDate;
-    }
-
-    public Timestamp getSpentTime() {
-        return spentTime;
-    }
-
-    public void setSpentTime(Timestamp spentTime) {
-        this.spentTime = spentTime;
-    }
-
-    public boolean isCreatedByExtApp() {
-        return createdByExtApp;
-    }
-
-    public void setCreatedByExtApp(boolean createdByExtApp) {
-        this.createdByExtApp = createdByExtApp;
-    }
-
-    public TaskStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(TaskStatus status) {
-        this.status = status;
-    }
-
-    public User getAssignedUser() {
-        return assignedUser;
-    }
-
-    public void setAssignedUser(User assignedUser) {
-        this.assignedUser = assignedUser;
-    }
-
-    public User getAuthorUser() {
-        return authorUser;
-    }
-
-    public void setAuthorUser(User authorUser) {
-        this.authorUser = authorUser;
-    }
-
-    public ExternalApp getAuthorExternalApp() {
-        return authorExternalApp;
-    }
-
-    public void setAuthorExternalApp(ExternalApp authorExternalApp) {
-        this.authorExternalApp = authorExternalApp;
-    }
-
-    public List<TaskHistory> getHistory() {
-        return history;
-    }
 }

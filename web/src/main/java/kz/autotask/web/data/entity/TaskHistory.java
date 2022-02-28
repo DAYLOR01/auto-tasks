@@ -1,9 +1,13 @@
 package kz.autotask.web.data.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.sql.Timestamp;
 
 @Entity
+@Getter @Setter
 @Table(name = "task_histories", schema = "at")
 public class TaskHistory {
 
@@ -25,40 +29,4 @@ public class TaskHistory {
     @ManyToOne
     @JoinColumn(name = "created_by")
     private User createdBy;
-
-    public Long getId() {
-        return id;
-    }
-
-    public Task getTask() {
-        return task;
-    }
-
-    public void setTask(Task task) {
-        this.task = task;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public Timestamp getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public User getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(User createdBy) {
-        this.createdBy = createdBy;
-    }
 }

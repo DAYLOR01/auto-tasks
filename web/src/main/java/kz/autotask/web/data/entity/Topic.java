@@ -1,8 +1,12 @@
 package kz.autotask.web.data.entity;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
+@Getter @Setter
 @Table(name = "topics", schema = "at")
 public class Topic {
 
@@ -21,40 +25,4 @@ public class Topic {
     private String header;
     private String poster;
     private String content;
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getHeader() {
-        return header;
-    }
-
-    public void setHeader(String header) {
-        this.header = header;
-    }
-
-    public String getPoster() {
-        return poster;
-    }
-
-    public void setPoster(String poster) {
-        this.poster = poster;
-    }
-
-    public String getContent() {
-        return content;
-    }
-
-    public void setContent(String content) {
-        this.content = content;
-    }
-
-    public User getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(User author) {
-        this.author = author;
-    }
 }
