@@ -3,6 +3,7 @@ package kz.autotask.web.controller.dto;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.Singular;
 
 import java.util.List;
 
@@ -45,5 +46,12 @@ public class ResponseDto {
         private long id;
         private UserShort author;
         private String header, content;
+    }
+
+    @Getter @Setter @Builder
+    public static class Page<T> {
+        private int pageSize, pageNumber, totalPages;
+        private long totalElements;
+        @Singular private List<T> elements;
     }
 }

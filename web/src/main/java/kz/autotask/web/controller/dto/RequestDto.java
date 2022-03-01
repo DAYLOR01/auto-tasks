@@ -18,4 +18,10 @@ public class RequestDto {
         private String username, password, name;
         private Set<Integer> tags;
     }
+
+    @Getter @Setter @NoArgsConstructor
+    public static class TopicFull {
+        private ResponseDto.UserShort author;
+        private String header, content;
+    }
 }

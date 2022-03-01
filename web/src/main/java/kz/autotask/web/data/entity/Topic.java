@@ -19,7 +19,7 @@ public class Topic {
     private Long id;
 
     @ManyToOne
-    @JoinTable(name = "author_id")
+    @JoinColumn(name = "author_id")
     private User author;
 
     private String header;
