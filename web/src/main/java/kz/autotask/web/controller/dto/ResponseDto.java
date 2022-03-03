@@ -16,16 +16,18 @@ public class ResponseDto {
 
     @Getter @Setter @Builder
     public static class UserShort {
+        private long id;
         private String username, name;
         private boolean isActive;
     }
 
     @Getter @Setter @Builder
     public static class UserFull{
+        private long id;
         private String username, name;
         private boolean isActive;
-        private List<TagFull> tags;
-        private List<RoleFull> roles;
+        @Singular private List<TagFull> tags;
+        @Singular private List<RoleFull> roles;
     }
 
     @Getter @Setter @Builder

@@ -13,7 +13,8 @@ public class Topic {
     @Id
     @SequenceGenerator(name="topics_id_seq",
             sequenceName="topics_id_seq",
-            allocationSize=1)
+            allocationSize=1,
+            schema = "at")
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
             generator="topics_id_seq")
     private Long id;

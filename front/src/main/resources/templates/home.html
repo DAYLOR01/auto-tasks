@@ -1,16 +1,19 @@
 <!DOCTYPE html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:replace="fragments.html :: head(title='Новости')"/>
 </head>
-<body>
+<body class="d-flex flex-column h-100">
     <nav th:replace="fragments.html :: navbar(authorized=true)"></nav>
 
     <div class="container mt-5 mb-5" id="content">
-        <h1 class="ms-4">Новости</h1>
+        <div class="d-flex ms-4 me-4 justify-content-between">
+            <h1>Новости</h1>
+            <button type="button" class="btn btn-outline-primary rounded-pill" id="newTopic">Новая запись</button>
+        </div>
         <div class="container-fluid p-0 mt-4" id="topics"></div>
-        <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="button" id="loadMore" onclick="loadTopics()" disabled>Загрузить еще...</button>
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button class="btn btn-outline-secondary" type="button" id="loadMore" disabled>Загрузить еще...</button>
         </div>
     </div>
 

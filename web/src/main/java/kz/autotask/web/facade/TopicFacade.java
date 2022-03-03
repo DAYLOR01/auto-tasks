@@ -7,5 +7,5 @@ public interface TopicFacade {
 
     ResponseDto.Page<ResponseDto.TopicFull> getPage(int pageNumber, int pageSize);
 
-    ResponseDto.TopicFull saveTopic(RequestDto.TopicFull topic);
+    ResponseDto.TopicFull createTopic(RequestDto.TopicFull topic, String authorUsername);
 }

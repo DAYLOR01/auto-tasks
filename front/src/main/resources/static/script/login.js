@@ -1,13 +1,14 @@
-const header = new Headers();
-header.append('Content-Type', 'application/json;charset=utf-8');
 const from = (new URLSearchParams(window.location.search)).get('from');
-const baseUrl = 'http://localhost:8080';
+
+document.addEventListener('DOMContentLoaded', function (){
+	document.getElementById('login').addEventListener('click', login)
+})
 
 const login = () => {
-	let username = document.querySelector('#username').value;
-	let password = document.querySelector('#password').value;
+	let username = document.getElementById('username').value;
+	let password = document.getElementById('password').value;
 
-	fetch('http://localhost:8081/api/login', {
+	fetch(`${apiUrl}/login`, {
 		method: 'POST',
 		headers: header,
 		body: JSON.stringify({
@@ -23,7 +24,7 @@ const login = () => {
 		})
 		.then(function(output){
 			window.localStorage.setItem('access_token', output.token);
-			window.location.replace(baseUrl + (from??''));
+			window.location.replace(`${baseUrl}${from??''}`);
 		})
 		.catch(function(reason){
 			console.log('error: ' + reason.status);

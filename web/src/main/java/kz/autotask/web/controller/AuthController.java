@@ -21,7 +21,7 @@ public class AuthController {
     }
 
     @GetMapping
-    public ResponseDto.UserShort getLogin(@RequestHeader("Authorization") String authHeader) {
+    public ResponseDto.UserFull getLogin(@RequestHeader("Authorization") String authHeader) {
         return authFacade.getLogin(authHeader);
     }
 }

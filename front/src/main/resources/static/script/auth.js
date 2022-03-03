@@ -1,9 +1,14 @@
 const token = window.localStorage.getItem('access_token');
-const header = new Headers();
+var currentUser;
 header.append('Authorization', 'Bearer ' + token)
 
 document.addEventListener('DOMContentLoaded', function (){
-    fetch('http://localhost:8081/api/login', {
+    getAuthInfo();
+    document.getElementById('logout').addEventListener('click', logout);
+})
+
+const getAuthInfo = () => {
+    fetch(`${apiUrl}/login`, {
         headers: header
     })
         .then(function(value){
@@ -13,9 +18,15 @@ document.addEventListener('DOMContentLoaded', function (){
             return value.json();
         })
         .then(function(output){
-            document.querySelector('#username').innerHTML = output.name
+            currentUser = output
+            document.getElementById('authUserName').innerHTML = output.name
         })
         .catch(function(reason){
-            window.location.replace('http://localhost:8080/login?from=' + window.location.pathname + window.location.search)
+            window.location.replace(`${baseUrl}/login?from=${window.location.pathname}${window.location.search}`)
         })
-})
+}
+
+const logout = () => {
+    window.localStorage.removeItem('access_token');
+    window.location.href = `${baseUrl}/login`
+}

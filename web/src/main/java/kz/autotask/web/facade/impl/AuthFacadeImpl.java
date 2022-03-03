@@ -28,9 +28,9 @@ public class AuthFacadeImpl implements AuthFacade {
     }
 
     @Override
-    public ResponseDto.UserShort getLogin(String authHeader) {
+    public ResponseDto.UserFull getLogin(String authHeader) {
         String username = jwtProvider.getLoginFromToken(JwtProvider.getTokenFromHeader(authHeader));
         User userEntity = userService.findByUsername(username);
-        return ResponseMapper.userShortFromEntity(userEntity);
+        return ResponseMapper.userFullFromEntity(userEntity);
     }
 }

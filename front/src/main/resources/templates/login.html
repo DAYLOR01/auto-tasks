@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ru">
+<html xmlns:th="http://www.thymeleaf.org" lang="ru" class="h-100">
 <head>
 	<th:block th:replace="fragments.html :: head(title='Вход')"/>
 </head>
-<body>
+<body class="d-flex flex-column h-100">
 	<nav th:replace="fragments.html :: navbar(authorized=false)"/>
 	<div class="container mt-5" id="content">
 		<div class="row justify-content-center">
@@ -23,7 +23,7 @@
 					<input type="password" class="form-control" id="password">
 				  </div>
 				  <div class="d-grid gap-2">
-					  <button class="btn btn-primary" type="button" onclick="login()">Войти</button>
+					  <button class="btn btn-primary" type="button" id="login">Войти</button>
 				  </div>
 				</form>
 			</div>

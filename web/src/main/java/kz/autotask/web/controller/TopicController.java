@@ -1,10 +1,11 @@
 package kz.autotask.web.controller;
 
+import kz.autotask.web.controller.dto.RequestDto;
 import kz.autotask.web.controller.dto.ResponseDto;
 import kz.autotask.web.facade.TopicFacade;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.security.Principal;
 
 @RestController
 @RequestMapping("api/topics")
@@ -16,16 +17,16 @@ public class TopicController {
         this.topicFacade = topicFacade;
     }
 
-    @GetMapping("/last10")
-    public List<ResponseDto.TopicFull> getLast10() {
-        return topicFacade.getLast10();
-    }
-
     @GetMapping
     public ResponseDto.Page<ResponseDto.TopicFull> getTopicsPage(
             @RequestParam int pageNumber,
             @RequestParam int pageSize
     ) {
         return topicFacade.getPage(pageNumber, pageSize);
+    }
+
+    @PostMapping
+    public ResponseDto.TopicFull createTopic(@RequestBody RequestDto.TopicFull topic, Principal principal) {
+        return topicFacade.createTopic(topic, principal.getName());
     }
 }

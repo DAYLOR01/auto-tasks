@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments.html :: head(title='Моя учетная запись')"/>
+</head>
+<body class="d-flex flex-column h-100">
+<nav th:replace="fragments.html :: navbar(authorized=true)"></nav>
+
+<div class="container mt-5 mb-5" id="content">
+    <div class="row justify-content-center">
+        <div class="col-md-6 text-center mb-5">
+            <h2 class="heading-section"></h2>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-md-7 col-lg-5">
+            <form>
+                <input class="form-control form-control-lg" type="text" placeholder="" aria-label=".form-control-lg example">
+                <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
+                <button class="btn btn-primary" type="button" id="login">Войти</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments.html :: footer"></footer>
+<script th:src="@{/script/topic.js}"></script>
+</body>
+</html>
