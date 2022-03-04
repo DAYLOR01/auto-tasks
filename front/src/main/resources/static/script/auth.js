@@ -20,6 +20,8 @@ const getAuthInfo = () => {
         .then(function(output){
             currentUser = output
             document.getElementById('authUserName').innerHTML = output.name
+            if(fillUserInfo != null)
+                fillUserInfo()
         })
         .catch(function(reason){
             window.location.replace(`${baseUrl}/login?from=${window.location.pathname}${window.location.search}`)

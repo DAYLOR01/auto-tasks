@@ -8,22 +8,40 @@
 
 <div class="container mt-5 mb-5" id="content">
     <div class="row justify-content-center">
-        <div class="col-md-6 text-center mb-5">
-            <h2 class="heading-section"></h2>
+        <div class="col-sm-8">
+            <p class="display-3" id="myName">Имя Фамилия</p>
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-md-7 col-lg-5">
-            <form>
-                <input class="form-control form-control-lg" type="text" placeholder="" aria-label=".form-control-lg example">
-                <input class="form-control" type="text" placeholder="Default input" aria-label="default input example">
-                <button class="btn btn-primary" type="button" id="login">Войти</button>
-            </form>
+        <div class="col-sm-5">
+            <div class="d-flex justify-content-between">
+                <p class="fs-5 m-0 text-uppercase" id="myUsername">юзернейм</p>
+                <button class="btn btn-outline-info" id="changePassword">Сменить пароль</button>
+            </div>
+            <div class="mt-5">
+                <p class="h3">Роли и привилегии</p>
+                <div class="d-flex flex-wrap" id="myRoles">
+                    <div class="p-2 flex-fill rounded-3 border border-1 m-1 bg-info bg-opacity-25">Администратор</div>
+                    <div class="p-2 flex-fill rounded-3 border border-1 m-1 bg-info bg-opacity-25">Управление пользователями</div>
+                    <div class="p-2 flex-fill rounded-3 border border-1 m-1 bg-info bg-opacity-25">Создание пользователей</div>
+                    <div class="p-2 flex-fill rounded-3 border border-1 m-1 bg-info bg-opacity-25">Блаблаблабла</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <ul class="list-group" id="myTags">
+                <li class="list-group-item list-group-item-primary">Разработчик</li>
+                <li class="list-group-item list-group-item-primary">Обслуживание серверов</li>
+                <li class="list-group-item list-group-item-info">Стажер</li>
+                <li class="list-group-item list-group-item-info">Еще что-то</li>
+                <li class="list-group-item list-group-item-info">Неважно</li>
+                <li class="list-group-item list-group-item-info">Лень придумывать</li>
+            </ul>
         </div>
     </div>
 </div>
 
 <footer th:replace="fragments.html :: footer"></footer>
-<script th:src="@{/script/topic.js}"></script>
+<script th:src="@{/script/me.js}"></script>
 </body>
 </html>
