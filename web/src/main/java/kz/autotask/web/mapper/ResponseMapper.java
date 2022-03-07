@@ -1,10 +1,7 @@
 package kz.autotask.web.mapper;
 
 import kz.autotask.web.controller.dto.ResponseDto;
-import kz.autotask.web.data.entity.Role;
-import kz.autotask.web.data.entity.Tag;
-import kz.autotask.web.data.entity.Topic;
-import kz.autotask.web.data.entity.User;
+import kz.autotask.web.data.entity.*;
 import org.springframework.data.domain.Page;
 
 public class ResponseMapper {
@@ -37,14 +34,17 @@ public class ResponseMapper {
         return ResponseDto.RoleFull.builder()
                 .id(roleEntity.getId())
                 .name(roleEntity.getName())
+                .descriptionRU(roleEntity.getDescriptionRu())
                 .userPriority(roleEntity.getUserPriority())
                 .build();
     }
 
-    public static ResponseDto.TagFull tagFullFromEntity(Tag tag) {
+    public static ResponseDto.TagFull tagFullFromEntity(Tag tagEntity) {
         return ResponseDto.TagFull.builder()
-                .id(tag.getId())
-                .name(tag.getName())
+                .id(tagEntity.getId())
+                .name(tagEntity.getName())
+                .descriptionRU(tagEntity.getDescriptionRu())
+                .usability(tagEntity.getUsability().name())
                 .build();
     }
 
@@ -55,6 +55,18 @@ public class ResponseMapper {
                 .header(topicEntity.getHeader())
                 .content(topicEntity.getContent())
                 .build();
+    }
+
+    public static ResponseDto.TaskShort taskShortFromEntity(Task taskEntity) {
+        ResponseDto.TaskShort.TaskShortBuilder responseBuilder = ResponseDto.TaskShort.builder()
+                .id(taskEntity.getId())
+                .status(taskEntity.getStatus())
+                .header(taskEntity.getHeader())
+                .assignedUser(userShortFromEntity(taskEntity.getAssignedUser()));
+        taskEntity.getTags().forEach(tag -> {
+            responseBuilder.tag(tagFullFromEntity(tag));
+        });
+        return responseBuilder.build();
     }
 
     public static ResponseDto.Page<ResponseDto.TopicFull> topicsPageFromPageDomain(Page<Topic> page) {
@@ -73,5 +85,4 @@ public class ResponseMapper {
                 .totalPages(page.getTotalPages())
                 .totalElements(page.getTotalElements());
     }
-
 }

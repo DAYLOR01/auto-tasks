@@ -3,42 +3,45 @@ package kz.autotask.web.controller;
 import kz.autotask.web.controller.dto.RequestDto;
 import kz.autotask.web.controller.dto.ResponseDto;
 import kz.autotask.web.data.entity.User;
+import kz.autotask.web.facade.UserFacade;
 import kz.autotask.web.service.TagService;
 import kz.autotask.web.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
+import java.security.Principal;
+
 @RestController
+@CrossOrigin
 @RequestMapping("api/users")
 public class UserController {
 
-    private final UserService userService;
-    private final TagService tagService;
-    private final PasswordEncoder passwordEncoder;
+    private final UserFacade userFacade;
 
     public UserController(
-            UserService userService,
-            TagService tagService,
-            PasswordEncoder passwordEncoder
+            UserFacade userFacade) {
+        this.userFacade = userFacade;
+    }
+
+//    @GetMapping
+//    public Iterable<User> getUsers(){
+//        return userService.findAll();
+//    }
+
+    @PutMapping("/change-password")
+    public ResponseDto.Message changePassword(
+            @RequestBody RequestDto.UserChangePassword userChangePassword,
+            Principal principal,
+            HttpServletResponse response
     ) {
-        this.userService = userService;
-        this.tagService = tagService;
-        this.passwordEncoder = passwordEncoder;
-    }
-
-    @GetMapping
-    public Iterable<User> getUsers(){
-        return userService.findAll();
-    }
-
-    @GetMapping("/{username}")
-    public ResponseDto.UserShort getUserByUsername(@PathVariable String username) {
-        User userEntity = userService.findActiveUserByUsername(username);
-        return ResponseDto.UserShort.builder()
-                .username(userEntity.getUsername())
-                .name(userEntity.getName())
-                .isActive(userEntity.getIsActive())
-                .build();
+        try {
+            userFacade.changePassword(principal.getName(), userChangePassword);
+            return ResponseDto.Message.builder().message("Ok").build();
+        } catch (Exception ignore) {
+            response.setStatus(400);
+            return ResponseDto.Message.builder().message("Password is invalid").build();
+        }
     }
 
     /*@PostMapping

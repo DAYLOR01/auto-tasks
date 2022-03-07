@@ -20,6 +20,7 @@ public class Tag {
     private Integer id;
 
     private String name;
+    private String descriptionRu;
 
     @Enumerated(EnumType.STRING)
     private TagUsability usability;

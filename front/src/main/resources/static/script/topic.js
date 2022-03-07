@@ -23,7 +23,7 @@ const loadTopics = () => {
         })
         .then(function(output){
             let innerContent = ""
-            for (let topic of output.elements) {
+            for (const topic of output.elements) {
                 innerContent += `
                 <div class="bg-light p-4 mb-4 rounded">
                     <h2>${topic.header}</h2>
@@ -53,13 +53,21 @@ const createNewTopic = () => {
     topicsDiv.innerHTML = `
         <div class="bg-light p-4 mb-4 rounded border border-2 border-secondary">
             <form>
-                <input type="text" class="form-control form-control-lg" id="topicHeader" maxlength="150" placeholder="Заголовок">
-                <textarea type="text" class="form-control" id="topicContent" rows="4" placeholder="Текст"></textarea>
-                <button type="button" class="btn btn-success mb-3" id="saveTopic">Сохранить</button>
+                <div class="mb-3">
+                    <input type="text" class="form-control form-control-lg" id="topicHeader" maxlength="150" placeholder="Заголовок">
+                </div>
+                <div class="mb-3">
+                    <textarea type="text" class="form-control" id="topicContent" rows="4" placeholder="Текст"></textarea>
+                </div>
+                <div class="mb-3">
+                    <button type="button" class="btn btn-danger" id="cancelNewTopic">Отмена</button>
+                    <button type="button" class="btn btn-success" id="saveTopic">Сохранить</button>
+                </div>
             </form>
         </div>
         ${topicsDiv.innerHTML}
     `
+    document.getElementById('cancelNewTopic').addEventListener('click', reloadTopics)
     document.getElementById('saveTopic').addEventListener('click', saveNewTopic)
     newTopicBtn.setAttribute('disabled', 'disabled');
 }
@@ -68,7 +76,7 @@ const saveNewTopic = () => {
     let topicHeader = document.getElementById('topicHeader').value
     let topicContent = document.getElementById('topicContent').value
 
-    fetch(`${s.apiUrl}/topics`, {
+    fetch(`${apiUrl}/topics`, {
         method: 'POST',
         headers: header,
         body: JSON.stringify({

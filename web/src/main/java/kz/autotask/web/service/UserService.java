@@ -1,5 +1,6 @@
 package kz.autotask.web.service;
 
+import kz.autotask.web.controller.dto.ResponseDto;
 import kz.autotask.web.data.entity.User;
 
 public interface UserService {
@@ -12,4 +13,5 @@ public interface UserService {
 
     User findByUsernameAndPassword(String username, String password);
 
+    void changePassword(String username, String newPassword);
 }

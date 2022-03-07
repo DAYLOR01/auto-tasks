@@ -36,12 +36,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByUsernameAndPassword(String username, String password) {
         User user = findByUsername(username);
-        if (user != null) {
-            if (passwordEncoder.matches(password, user.getPassword())) {
-                return user;
-            }
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+            return user;
         }
         return null;
+    }
+
+    @Override
+    public void changePassword(String username, String newPassword) {
+        User user = userRepository.findByUsername(username);
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
     }
 
 }

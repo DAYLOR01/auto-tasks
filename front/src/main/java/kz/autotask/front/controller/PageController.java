@@ -26,4 +26,9 @@ public class PageController {
     public String me() {
         return "me";
     }
+
+    @GetMapping("/task-board")
+    public String taskboard() {
+        return "task-board";
+    }
 }

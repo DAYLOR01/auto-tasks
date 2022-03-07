@@ -1,5 +1,6 @@
 package kz.autotask.web.controller.dto;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,5 +24,10 @@ public class RequestDto {
     @Getter @Setter @NoArgsConstructor
     public static class TopicFull {
         private String header, content;
+    }
+
+    @Getter @Setter @NoArgsConstructor
+    public static class UserChangePassword {
+        private String oldPassword, newPassword;
     }
 }

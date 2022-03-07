@@ -9,34 +9,55 @@
 <div class="container mt-5 mb-5" id="content">
     <div class="row justify-content-center">
         <div class="col-sm-8">
-            <p class="display-3" id="myName">Имя Фамилия</p>
+            <p class="display-3" id="myName"></p>
         </div>
     </div>
     <div class="row justify-content-center">
         <div class="col-sm-5">
             <div class="d-flex justify-content-between">
-                <p class="fs-5 m-0 text-uppercase" id="myUsername">юзернейм</p>
-                <button class="btn btn-outline-info" id="changePassword">Сменить пароль</button>
+                <p class="fs-5 m-0 text-uppercase" id="myUsername"></p>
+                <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Сменить пароль</button>
             </div>
             <div class="mt-5">
                 <p class="h3">Роли и привилегии</p>
                 <div class="d-flex flex-wrap" id="myRoles">
-                    <div class="p-2 flex-fill rounded-3 border border-1 m-1 bg-info bg-opacity-25">Администратор</div>
-                    <div class="p-2 flex-fill rounded-3 border border-1 m-1 bg-info bg-opacity-25">Управление пользователями</div>
-                    <div class="p-2 flex-fill rounded-3 border border-1 m-1 bg-info bg-opacity-25">Создание пользователей</div>
-                    <div class="p-2 flex-fill rounded-3 border border-1 m-1 bg-info bg-opacity-25">Блаблаблабла</div>
                 </div>
             </div>
         </div>
         <div class="col-sm-3">
             <ul class="list-group" id="myTags">
-                <li class="list-group-item list-group-item-primary">Разработчик</li>
-                <li class="list-group-item list-group-item-primary">Обслуживание серверов</li>
-                <li class="list-group-item list-group-item-info">Стажер</li>
-                <li class="list-group-item list-group-item-info">Еще что-то</li>
-                <li class="list-group-item list-group-item-info">Неважно</li>
-                <li class="list-group-item list-group-item-info">Лень придумывать</li>
             </ul>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="changePasswordModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Сменить пароль</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="oldPassword" placeholder="Старый пароль">
+                        <div class="invalid-feedback">Неверный пароль</div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="newPassword" placeholder="Новый пароль">
+                        <div class="invalid-feedback">Введите новый пароль</div>
+                    </div>
+                    <div class="mb-3">
+                        <input type="password" class="form-control" id="confirmPassword" placeholder="Подтвердите новый пароль">
+                        <div class="invalid-feedback">Пароли не совпадают</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-success" id="changePassword">Сменить пароль</button>
+            </div>
         </div>
     </div>
 </div>

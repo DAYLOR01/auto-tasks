@@ -1,31 +1,22 @@
 const token = window.localStorage.getItem('access_token');
-var currentUser;
+let currentUser;
 header.append('Authorization', 'Bearer ' + token)
 
-document.addEventListener('DOMContentLoaded', function (){
-    getAuthInfo();
+document.addEventListener('DOMContentLoaded', async function (){
+    currentUser = await getAuthInfo();
+    document.getElementById('authUserName').innerHTML = currentUser.name
     document.getElementById('logout').addEventListener('click', logout);
 })
 
-const getAuthInfo = () => {
-    fetch(`${apiUrl}/login`, {
+async function getAuthInfo() {
+    if(currentUser != null)
+        return currentUser
+    let response = await fetch(`${apiUrl}/login`, {
         headers: header
-    })
-        .then(function(value){
-            if (value.status !== 200){
-                return Promise.reject(new Error(value.status));
-            }
-            return value.json();
-        })
-        .then(function(output){
-            currentUser = output
-            document.getElementById('authUserName').innerHTML = output.name
-            if(fillUserInfo != null)
-                fillUserInfo()
-        })
-        .catch(function(reason){
-            window.location.replace(`${baseUrl}/login?from=${window.location.pathname}${window.location.search}`)
-        })
+    });
+    if(!response.ok)
+        window.location.replace(`${baseUrl}/login?from=${window.location.pathname}${window.location.search}`)
+    return await response.json()
 }
 
 const logout = () => {

@@ -19,5 +19,6 @@ public class Role {
     private Integer id;
 
     private String name;
+    private String descriptionRu;
     private int userPriority;
 }

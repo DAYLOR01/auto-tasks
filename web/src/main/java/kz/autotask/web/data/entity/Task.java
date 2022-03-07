@@ -5,8 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Timestamp;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 @Entity
@@ -24,9 +23,9 @@ public class Task {
 
     private String header;
     private String text;
-    private Date assignDate;
-    private Date inspirationDate;
-    private Timestamp spentTime;
+    private LocalDate assignDate;
+    private LocalDate inspirationDate;
+    private LocalDate completionDate;
 
     @ManyToOne
     @JoinColumn(name = "assigned_user_id")
@@ -47,4 +46,13 @@ public class Task {
 
     @OneToMany(mappedBy = "task")
     private List<TaskHistory> history;
+
+    @ManyToMany
+    @JoinTable(
+            name = "tasks_tags",
+            schema = "at",
+            joinColumns = @JoinColumn(name = "task_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    private List<Tag> tags;
 }
