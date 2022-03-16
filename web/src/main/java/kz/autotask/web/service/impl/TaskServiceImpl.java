@@ -29,6 +29,16 @@ public class TaskServiceImpl implements TaskService {
             TaskStatus status,
             LocalDate completionDate
     ) {
-        return taskRepository.findAllByAssignedUser_UsernameAndStatusAndCompletionDateBefore(username, status, completionDate);
+        return taskRepository.findAllByAssignedUser_UsernameAndStatusAndCompletionDateAfter(username, status, completionDate);
+    }
+
+    @Override
+    public Task findById(long id) {
+        return taskRepository.findById(id);
+    }
+
+    @Override
+    public Task save(Task task) {
+        return taskRepository.save(task);
     }
 }

@@ -27,7 +27,7 @@ const loadTopics = () => {
                 innerContent += `
                 <div class="bg-light p-4 mb-4 rounded">
                     <h2>${topic.header}</h2>
-                    <p class="lead">${topic.content}</p>
+                    <p class="lead">${topic.content.replace('\n','<br/>')}</p>
                     <p>Автор: ${topic.author.name}</p>
                 </div>
                 `
@@ -47,6 +47,7 @@ const reloadTopics = () => {
     pageNumber = 1;
     topicsDiv.innerHTML = '';
     loadTopics();
+    newTopicBtn.removeAttribute('disabled');
 }
 
 const createNewTopic = () => {

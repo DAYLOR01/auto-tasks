@@ -1,5 +1,6 @@
 package kz.autotask.web.data.entity;
 
+import kz.autotask.web.data.entity.enums.TaskHistoryType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,7 +15,8 @@ public class TaskHistory {
     @Id
     @SequenceGenerator(name="task_histories_id_seq",
             sequenceName="task_histories_id_seq",
-            allocationSize=1)
+            allocationSize=1,
+            schema = "at")
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
             generator="task_histories_id_seq")
     private Long id;
@@ -23,7 +25,10 @@ public class TaskHistory {
     @JoinColumn(name = "task_id")
     private Task task;
 
-    private String content;
+    @Enumerated(EnumType.STRING)
+    private TaskHistoryType type;
+
+    private String value;
     private Timestamp createdAt;
 
     @ManyToOne

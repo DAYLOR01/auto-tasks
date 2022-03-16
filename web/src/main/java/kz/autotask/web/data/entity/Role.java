@@ -20,5 +20,5 @@ public class Role {
 
     private String name;
     private String descriptionRu;
-    private int userPriority;
+    private Integer userPriority;
 }

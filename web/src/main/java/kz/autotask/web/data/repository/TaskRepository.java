@@ -12,5 +12,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     List<Task> findAllByAssignedUser_UsernameAndStatus(String username, TaskStatus status);
 
-    List<Task> findAllByAssignedUser_UsernameAndStatusAndCompletionDateBefore(String username, TaskStatus status, LocalDate completionDateMax);
+    List<Task> findAllByAssignedUser_UsernameAndStatusAndCompletionDateAfter(String username, TaskStatus status, LocalDate completionDateMax);
+
+    Task findById(long id);
 }

@@ -1,11 +1,11 @@
 package kz.autotask.web.controller.dto;
 
-import lombok.Builder;
+import kz.autotask.web.data.entity.enums.TaskStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.Set;
+import java.time.LocalDate;
 
 public class RequestDto {
 
@@ -16,9 +16,9 @@ public class RequestDto {
 
     @Getter @Setter @NoArgsConstructor
     public static class UserFull {
-        private long id;
         private String username, password, name;
-        private Set<Integer> tags;
+        private Integer[] tags;
+        private Integer[] roles;
     }
 
     @Getter @Setter @NoArgsConstructor
@@ -29,5 +29,35 @@ public class RequestDto {
     @Getter @Setter @NoArgsConstructor
     public static class UserChangePassword {
         private String oldPassword, newPassword;
+    }
+
+    @Getter @Setter @NoArgsConstructor
+    public static class UserChangeActive {
+        private String username;
+        private boolean isActive;
+    }
+
+    @Getter @Setter @NoArgsConstructor
+    public static class TaskFull {
+        private String header;
+        private String text;
+        private boolean autoAssignUser;
+        private Integer[] assignedUserTagIds;
+        private int assignedUserRole;
+        private String assignedUser;
+        private Integer[] tagIds;
+        private LocalDate inspirationDate;
+    }
+
+    @Getter @Setter @NoArgsConstructor
+    public static class TaskChangeStatus {
+        private long taskId;
+        private TaskStatus newStatus;
+    }
+
+    @Getter @Setter @NoArgsConstructor
+    public static class TaskAddCommentary {
+        private long taskId;
+        private String commentary;
     }
 }

@@ -1,11 +1,18 @@
 const token = window.localStorage.getItem('access_token');
+const authUserName = document.getElementById('authUserName');
+const logoutBtn = document.getElementById('logout');
+const userManagement = document.getElementById('userManagement');
 let currentUser;
 header.append('Authorization', 'Bearer ' + token)
 
 document.addEventListener('DOMContentLoaded', async function (){
     currentUser = await getAuthInfo();
-    document.getElementById('authUserName').innerHTML = currentUser.name
-    document.getElementById('logout').addEventListener('click', logout);
+    authUserName.innerHTML = currentUser.name
+    logoutBtn.addEventListener('click', logout);
+    if (currentUser.roles.find((el, i, arr) => {return el.name === "ROLE_USER_MANAGEMENT"})) {
+        userManagement.classList.remove('d-none');
+        userManagement.removeAttribute('disabled');
+    }
 })
 
 async function getAuthInfo() {

@@ -14,7 +14,8 @@ public class User {
     @Id
     @SequenceGenerator(name="users_id_seq",
             sequenceName="users_id_seq",
-            allocationSize=1)
+            allocationSize=1,
+            schema = "at")
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
             generator="users_id_seq")
     private Long id;
@@ -42,6 +43,4 @@ public class User {
     )
     private List<Tag> tags;
 
-    @OneToMany(mappedBy = "assignedUser")
-    private List<Task> assignedTasks;
 }

@@ -1,12 +1,11 @@
 package kz.autotask.web.controller;
 
+import kz.autotask.web.controller.dto.RequestDto;
 import kz.autotask.web.controller.dto.ResponseDto;
 import kz.autotask.web.facade.TaskFacade;
 import kz.autotask.web.facade.TopicFacade;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import kz.autotask.web.mapper.ResponseMapper;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
@@ -29,5 +28,20 @@ public class TaskController {
         if (lastMonth)
             return taskFacade.findAllByAssignedUserAndStatusCompletedMonthAgo(principal.getName(), status);
         return taskFacade.findAllByAssignedUserAndStatus(principal.getName(), status);
+    }
+
+    @GetMapping(params = "id")
+    public ResponseDto.TaskFull getTaskById(@RequestParam long id) {
+        return taskFacade.findById(id);
+    }
+
+    @PostMapping
+    public ResponseDto.TaskShort saveTask(Principal principal, @RequestBody RequestDto.TaskFull task) {
+        return taskFacade.save(principal.getName(), task);
+    }
+
+    @PutMapping("/change-status")
+    public ResponseDto.TaskShort changeStatus(Principal principal, @RequestBody RequestDto.TaskChangeStatus taskChangeStatus) {
+        return taskFacade.changeStatus(principal.getName(), taskChangeStatus);
     }
 }

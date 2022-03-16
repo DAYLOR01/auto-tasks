@@ -24,6 +24,5 @@ public class Topic {
     private User author;
 
     private String header;
-    private String poster;
     private String content;
 }

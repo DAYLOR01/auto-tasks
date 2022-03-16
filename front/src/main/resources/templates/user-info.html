@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments.html :: head(title=${username})"/>
+</head>
+<body class="d-flex flex-column h-100">
+<nav th:replace="fragments.html :: navbar(authorized=true)"></nav>
+
+<div class="container mt-5 mb-5" id="content">
+    <div class="row justify-content-center">
+        <div class="col-sm-8">
+            <p class="display-3" id="usersName"></p>
+        </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-sm-5">
+            <div class="d-flex justify-content-between">
+                <p class="fs-5 m-0 text-uppercase" id="usersUsername" th:text="${username}"></p>
+                <div class="btn-toolbox">
+                    <button class="btn btn-outline-info" id="editUserOpenModal" data-bs-toggle="modal" data-bs-target="#editUserModal">Отредактировать</button>
+                    <button class="btn btn-outline-danger d-none" id="deactivateUser">Деактивировать</button>
+                    <button class="btn btn-outline-primary d-none" id="activateUser">Активировать</button>
+                </div>
+            </div>
+            <div class="mt-5">
+                <p class="h3">Роли и привилегии</p>
+                <div class="d-flex flex-wrap" id="usersRoles">
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3">
+            <p class="h3">Тэги</p>
+            <ul class="list-group" id="usersTags">
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editUserModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Отредактировать пользователя</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-center">
+                    <div class="col col-sm-6">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="newName" placeholder="Полное имя">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" autocomplete="new-password" class="form-control" id="newPassword" placeholder="Новый пароль">
+                        </div>
+                    </div>
+                    <div class="col col-sm-4">
+                        <div class="mb-2">
+                            <label class="form-label" for="newMainTags">Основные тэги:</label>
+                            <select class="form-select" size="2" multiple id="newMainTags">
+
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="newSecondaryTags">Вторичные тэги:</label>
+                            <select class="form-select" size="3" multiple id="newSecondaryTags">
+
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="newRoles">Роли:</label>
+                            <select class="form-select" size="3" multiple id="newRoles">
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-success" id="editUser">Сохранить изменения</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments.html :: footer"></footer>
+<script th:src="@{/script/user-info.js}"></script>
+</body>
+</html>

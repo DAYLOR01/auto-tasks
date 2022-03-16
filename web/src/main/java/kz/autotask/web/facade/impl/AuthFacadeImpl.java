@@ -7,6 +7,7 @@ import kz.autotask.web.facade.AuthFacade;
 import kz.autotask.web.mapper.ResponseMapper;
 import kz.autotask.web.security.JwtProvider;
 import kz.autotask.web.service.UserService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -22,7 +23,9 @@ public class AuthFacadeImpl implements AuthFacade {
 
     @Override
     public ResponseDto.Auth login(RequestDto.Auth request) {
-        User user = userService.findByUsernameAndPassword(request.getUsername(), request.getPassword());
+        User user = userService.findActiveByUsernameAndPassword(request.getUsername(), request.getPassword());
+        if(user == null || user.getRoles().isEmpty())
+            throw new UsernameNotFoundException("User with username: " + request.getUsername() + " - not found or not activated.");
         String token = jwtProvider.generateToken(user.getUsername());
         return ResponseDto.Auth.builder().token(token).build();
     }

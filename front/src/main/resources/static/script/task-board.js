@@ -33,9 +33,10 @@ const loadMyTasksToStack = (status, lastMonth, stackElement) => {
                 innerContent += `
                 <div class="card border-primary mb-1">
                     <div class="card-header">
-                        <a href="#" class="card-link">#${task.id}</a>
+                        <a href="/tasks?id=${task.id}" class="card-link">#${task.id}</a>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body pb-0">
+                        <p class="card-text">${task.header}</p>
                         <div class="row row-cols-lg-3 row-cols-1">
                 `
                 for (const tag of task.tags) {
@@ -49,7 +50,6 @@ const loadMyTasksToStack = (status, lastMonth, stackElement) => {
                 }
                 innerContent += `
                         </div>
-                        <p class="card-text">${task.header}</p>
                     </div>
                 </div>
                 `

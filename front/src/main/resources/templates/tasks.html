@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments.html :: head(title='Новости')"/>
+</head>
+<body class="d-flex flex-column h-100">
+<nav th:replace="fragments.html :: navbar(authorized=true)"></nav>
+
+<div class="container h-100" id="content">
+
+</div>
+
+<footer th:replace="fragments.html :: footer"></footer>
+<script th:src="@{/script/task-board.js}"></script>
+</body>
+</html>

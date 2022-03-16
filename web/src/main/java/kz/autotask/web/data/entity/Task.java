@@ -16,7 +16,8 @@ public class Task {
     @Id
     @SequenceGenerator(name="tasks_id_seq",
             sequenceName="tasks_id_seq",
-            allocationSize=1)
+            allocationSize=1,
+            schema = "at")
     @GeneratedValue(strategy = GenerationType.SEQUENCE,
             generator="tasks_id_seq")
     private Long id;
@@ -34,12 +35,6 @@ public class Task {
     @ManyToOne
     @JoinColumn(name = "author_user_id")
     private User authorUser;
-
-    private Boolean createdByExtApp;
-
-    @ManyToOne
-    @JoinColumn(name = "author_ext_app_id")
-    private ExternalApp authorExternalApp;
 
     @Enumerated(EnumType.STRING)
     private TaskStatus status;

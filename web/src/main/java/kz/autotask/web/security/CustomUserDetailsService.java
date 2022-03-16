@@ -1,5 +1,6 @@
 package kz.autotask.web.security;
 
+import kz.autotask.web.data.entity.User;
 import kz.autotask.web.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,6 +22,9 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return new CustomUserDetails(userService.findByUsername(username));
+        User user = userService.findActiveUserByUsername(username);
+        if(user == null || user.getRoles().isEmpty())
+            throw new UsernameNotFoundException("User with username: " + username + " - not found or not activated.");
+        return new CustomUserDetails(user);
     }
 }

@@ -15,4 +15,8 @@ public interface TaskService {
             TaskStatus status,
             LocalDate completionDate
     );
+
+    Task findById(long id);
+
+    Task save(Task task);
 }

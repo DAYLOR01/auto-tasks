@@ -1,12 +1,15 @@
 package kz.autotask.web.controller.dto;
 
-import kz.autotask.web.data.entity.enums.TagUsability;
+import kz.autotask.web.data.entity.enums.TaskHistoryType;
 import kz.autotask.web.data.entity.enums.TaskStatus;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.Singular;
+import org.springframework.lang.Nullable;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.util.List;
 
 public class ResponseDto {
@@ -47,7 +50,7 @@ public class ResponseDto {
     public static class RoleFull {
         private int id;
         private String name, descriptionRU;
-        private int userPriority;
+        private Integer userPriority;
     }
 
     @Getter @Setter @Builder
@@ -64,6 +67,30 @@ public class ResponseDto {
         private UserShort assignedUser;
         private TaskStatus status;
         @Singular private List<TagFull> tags;
+        private LocalDate inspirationDate;
+    }
+
+    @Getter @Setter @Builder
+    public static class TaskFull {
+        private long id;
+        private String header;
+        private String text;
+        private UserShort assignedUser;
+        private UserShort authorUser;
+        private TaskStatus status;
+        private LocalDate assignDate;
+        private LocalDate inspirationDate;
+        private LocalDate completionDate;
+        @Singular private List<TagFull> tags;
+    }
+
+    @Getter @Setter @Builder
+    public static class TaskHistoryFull {
+        private long taskId;
+        private TaskHistoryType type;
+        private String value;
+        private Timestamp createdAt;
+        private UserShort createdBy;
     }
 
     @Getter @Setter @Builder

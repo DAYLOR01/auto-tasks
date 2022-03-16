@@ -1,12 +1,14 @@
 const from = (new URLSearchParams(window.location.search)).get('from');
+const loginBtn = document.getElementById('login');
 
 document.addEventListener('DOMContentLoaded', function (){
-	document.getElementById('login').addEventListener('click', login)
+	loginBtn.addEventListener('click', login)
 })
 
 const login = () => {
 	let username = document.getElementById('username').value;
 	let password = document.getElementById('password').value;
+	loginBtn.classList.remove('is-invalid')
 
 	fetch(`${apiUrl}/login`, {
 		method: 'POST',
@@ -28,5 +30,6 @@ const login = () => {
 		})
 		.catch(function(reason){
 			console.log('error: ' + reason.status);
+			loginBtn.classList.add('is-invalid');
 		})
 }

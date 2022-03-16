@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:replace="fragments.html :: head(title='Управление пользователями')"/>
+    <link href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css" rel="stylesheet" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker-full.min.js"></script>
+</head>
+<body class="d-flex flex-column h-100">
+<nav th:replace="fragments.html :: navbar(authorized=true)"></nav>
+
+<div class="container py-3" id="content">
+    <div class="row justify-content-center">
+        <div class="col-sm-8 col">
+            <div class="d-flex justify-content-between">
+                <h1>Пользователи:</h1>
+                <button type="button" class="btn btn-outline-primary rounded-pill" id="newUserOpenModal"
+                        data-bs-toggle="modal" data-bs-target="#newUserModal">
+                    Новый пользователь
+                </button>
+            </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Username</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Is active</th>
+                </tr>
+                </thead>
+                <tbody id="tableBody">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <nav>
+        <ul class="pagination justify-content-center">
+            <li class="page-item"><a class="page-link" id="firstPage" type="button">&laquo;</a></li>
+            <li class="page-item"><a class="page-link" id="prevPage" type="button">&lt;</a></li>
+            <li class="page-item" style="width: 5rem">
+                <input type="number" id="pageNumber" class="h-100 w-100 input-control border" min="1" value="1">
+            </li>
+            <li class="page-item"><a class="page-link" id="nextPage" type="button">&gt;</a></li>
+            <li class="page-item"><a class="page-link" id="lastPage" type="button">&raquo;</a></li>
+        </ul>
+    </nav>
+</div>
+
+<div class="modal fade" id="newUserModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Создание пользователя</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row justify-content-center">
+                    <div class="col col-sm-6">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="newUsername" placeholder="Псевдоним">
+                            <div class="invalid-feedback">Псевдоним не может быть пустым</div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" id="newName" placeholder="Полное имя">
+                        </div>
+                        <div class="mb-3">
+                            <input type="password" autocomplete="new-password" class="form-control" id="newPassword" placeholder="Новый пароль">
+                            <div class="invalid-feedback">Пароль не может быть пустым</div>
+                        </div>
+                    </div>
+                    <div class="col col-sm-4">
+                        <div class="mb-2">
+                            <label class="form-label" for="newMainTags">Основные тэги:</label>
+                            <select class="form-select" size="2" multiple id="newMainTags">
+
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="newSecondaryTags">Вторичные тэги:</label>
+                            <select class="form-select" size="3" multiple id="newSecondaryTags">
+
+                            </select>
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="newRoles">Роли:</label>
+                            <select class="form-select" size="3" multiple id="newRoles">
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Отмена</button>
+                <button type="button" class="btn btn-success" id="createNewUser">Создать пользователя</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer th:replace="fragments.html :: footer"></footer>
+<script th:src="@{/script/user-management.js}"></script>
+</body>
+</html>

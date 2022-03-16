@@ -62,11 +62,39 @@ public class ResponseMapper {
                 .id(taskEntity.getId())
                 .status(taskEntity.getStatus())
                 .header(taskEntity.getHeader())
-                .assignedUser(userShortFromEntity(taskEntity.getAssignedUser()));
+                .assignedUser(userShortFromEntity(taskEntity.getAssignedUser()))
+                .inspirationDate(taskEntity.getInspirationDate());
         taskEntity.getTags().forEach(tag -> {
             responseBuilder.tag(tagFullFromEntity(tag));
         });
         return responseBuilder.build();
+    }
+
+    public static ResponseDto.TaskFull taskFullFromEntity(Task taskEntity) {
+        ResponseDto.TaskFull.TaskFullBuilder responseBuilder = ResponseDto.TaskFull.builder()
+                .id(taskEntity.getId())
+                .status(taskEntity.getStatus())
+                .header(taskEntity.getHeader())
+                .text(taskEntity.getText())
+                .authorUser(userShortFromEntity(taskEntity.getAuthorUser()))
+                .assignedUser(userShortFromEntity(taskEntity.getAssignedUser()))
+                .assignDate(taskEntity.getAssignDate())
+                .inspirationDate(taskEntity.getInspirationDate())
+                .completionDate(taskEntity.getCompletionDate());
+        taskEntity.getTags().forEach(tag -> {
+            responseBuilder.tag(tagFullFromEntity(tag));
+        });
+        return responseBuilder.build();
+    }
+
+    public static ResponseDto.TaskHistoryFull taskHistoryFullFromEntity(TaskHistory taskHistory) {
+        return ResponseDto.TaskHistoryFull.builder()
+                .taskId(taskHistory.getTask().getId())
+                .type(taskHistory.getType())
+                .value(taskHistory.getValue())
+                .createdAt(taskHistory.getCreatedAt())
+                .createdBy(userShortFromEntity(taskHistory.getCreatedBy()))
+                .build();
     }
 
     public static ResponseDto.Page<ResponseDto.TopicFull> topicsPageFromPageDomain(Page<Topic> page) {
@@ -74,6 +102,15 @@ public class ResponseMapper {
                 buildPageInfo(page, ResponseDto.TopicFull.class);
         page.getContent().forEach(topic -> {
             responseBuilder.element(topicFullFromEntity(topic));
+        });
+        return responseBuilder.build();
+    }
+
+    public static ResponseDto.Page<ResponseDto.UserShort> userPageFromPageDomain(Page<User> page) {
+        ResponseDto.Page.PageBuilder<ResponseDto.UserShort> responseBuilder =
+                buildPageInfo(page, ResponseDto.UserShort.class);
+        page.getContent().forEach(user -> {
+            responseBuilder.element(userShortFromEntity(user));
         });
         return responseBuilder.build();
     }

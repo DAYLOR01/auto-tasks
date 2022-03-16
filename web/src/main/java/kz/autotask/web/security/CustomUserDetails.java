@@ -10,7 +10,7 @@ import java.util.List;
 
 public class CustomUserDetails extends User implements UserDetails {
 
-    private List<CustomGrantedAuthority> authorities = new ArrayList<>();
+    private final List<CustomGrantedAuthority> authorities = new ArrayList<>();
 
     public CustomUserDetails(User entity) {
         this.setUsername(entity.getUsername());
@@ -22,7 +22,7 @@ public class CustomUserDetails extends User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return authorities;
     }
 
     @Override
