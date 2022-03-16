@@ -70,8 +70,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> findLeastLoadedUserByTagsAndRole(Integer[] tagIds, int roleId) {
+    public List<User> findLeastLoadedUsers(Integer[] tagIds, int roleId) {
         return userRepository.findLeastLoadedUsersByTagIdsAndRole(tagIds, tagIds.length, roleId);
+    }
+
+    @Override
+    public User findOneLeastLoadedUser(Integer[] tagIds, int roleId) {
+        return userRepository.findOneLeastLoadedUserByTagIdsAndRole(tagIds, tagIds.length, roleId);
+    }
+
+    @Override
+    public long countByTagsAndRole(Integer[] tagIds, int roleId) {
+        return userRepository.countByTagIdsAndRole(tagIds, tagIds.length, roleId);
     }
 
     @Override

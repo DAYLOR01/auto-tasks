@@ -11,7 +11,9 @@ public interface UserFacade {
 
     void changeActive(RequestDto.UserChangeActive userChangePassword);
 
-    List<ResponseDto.UserShort> findLeastLoadedUserByTagsAndRole(Integer[] tagIds, int roleId);
+    List<ResponseDto.UserShort> findLeastLoadedUsers(Integer[] tagIds, int roleId);
+
+    long countUsersByTagsAndRole(Integer[] tagIds, int roleId);
 
     ResponseDto.Page<ResponseDto.UserShort> getPage(int pageNumber, int pageSize);
 

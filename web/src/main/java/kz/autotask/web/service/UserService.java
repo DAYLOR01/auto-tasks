@@ -4,7 +4,6 @@ import kz.autotask.web.data.entity.Tag;
 import kz.autotask.web.data.entity.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 import java.util.List;
 
@@ -22,7 +21,11 @@ public interface UserService {
 
     List<Tag> findMainTagsByUsername(String username);
 
-    List<User> findLeastLoadedUserByTagsAndRole(Integer[] tagIds, int roleId);
+    List<User> findLeastLoadedUsers(Integer[] tagIds, int roleId);
+
+    User findOneLeastLoadedUser(Integer[] tagIds, int roleId);
+
+    long countByTagsAndRole(Integer[] tagIds, int roleId);
 
     Page<User> getPage(Pageable pageable);
 

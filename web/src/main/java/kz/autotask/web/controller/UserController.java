@@ -53,8 +53,10 @@ public class UserController {
 
     @GetMapping("/least-loaded")
     public List<ResponseDto.UserShort> getLeastLoadedByTagsAndRole(@RequestParam Integer[] tagIds, @RequestParam int roleId) {
-        return userFacade.findLeastLoadedUserByTagsAndRole(tagIds, roleId);
+        return userFacade.findLeastLoadedUsers(tagIds, roleId);
     }
+
+    @GetMapping
 
     @Secured("ROLE_USER_MANAGEMENT")
     @PostMapping

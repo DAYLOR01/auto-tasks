@@ -69,7 +69,7 @@ public class TaskFacadeImpl implements TaskFacade {
         taskEntity.setAuthorUser(userService.findByUsername(authorUsername));
         User assignedUser;
         if(task.isAutoAssignUser()) {
-            assignedUser = userService.findLeastLoadedUserByTagsAndRole(
+            assignedUser = userService.findLeastLoadedUsers(
                     task.getAssignedUserTagIds(),
                     task.getAssignedUserRole()
             ).get(0);

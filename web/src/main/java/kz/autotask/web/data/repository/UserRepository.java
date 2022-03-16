@@ -36,4 +36,43 @@ public interface UserRepository extends PagingAndSortingRepository<User, Long> {
             "             )", nativeQuery = true)
     List<User> findLeastLoadedUsersByTagIdsAndRole(Integer[] tagIds, int tagsNum, int roleId);
 
+    @Query(value = "select us.* from at.users us " +
+            "where ( " +
+            "    select count(*) from at.users_tags " +
+            "    where user_id = us.id " +
+            "      and tag_id in ?1 " +
+            "    ) = ?2 " +
+            "and ( " +
+            "    select count(*) from at.users_roles " +
+            "    where user_id = us.id " +
+            "      and role_id = ?3 " +
+            "    ) > 0 " +
+            "and us.is_active " +
+            "order by ( " +
+            "    select count(*) from at.tasks " +
+            "    where assigned_user_id = us.id " +
+            "    and status in ('OPEN', 'IN_PROGRESS') " +
+            "             ), " +
+            "         ( " +
+            "    select count(*) from at.tasks " +
+            "    where assigned_user_id = us.id " +
+            "    and status in ('IN_PROGRESS') " +
+            "             ) " +
+            "limit 1 ", nativeQuery = true)
+    User findOneLeastLoadedUserByTagIdsAndRole(Integer[] tagIds, int tagsNum, int roleId);
+
+    @Query(value = "select count(*) from at.users us " +
+            "where ( " +
+            "    select count(*) from at.users_tags " +
+            "    where user_id = us.id " +
+            "      and tag_id in ?1 " +
+            "    ) = ?2 " +
+            "and ( " +
+            "    select count(*) from at.users_roles " +
+            "    where user_id = us.id " +
+            "      and role_id = ?3 " +
+            "    ) > 0 " +
+            "and us.is_active ", nativeQuery = true)
+    long countByTagIdsAndRole(Integer[] tagIds, int tagsNum, int roleID);
+
 }

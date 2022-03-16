@@ -44,12 +44,17 @@ public class UserFacadeImpl implements UserFacade {
     }
 
     @Override
-    public List<ResponseDto.UserShort> findLeastLoadedUserByTagsAndRole(Integer[] tagIds, int roleId) {
+    public List<ResponseDto.UserShort> findLeastLoadedUsers(Integer[] tagIds, int roleId) {
         List<ResponseDto.UserShort> response = new ArrayList<>();
-        userService.findLeastLoadedUserByTagsAndRole(tagIds, roleId).forEach(user -> {
+        userService.findLeastLoadedUsers(tagIds, roleId).forEach(user -> {
             response.add(ResponseMapper.userShortFromEntity(user));
         });
         return response;
+    }
+
+    @Override
+    public long countUsersByTagsAndRole(Integer[] tagIds, int roleId) {
+        return userService.countByTagsAndRole(tagIds, roleId);
     }
 
     @Override
