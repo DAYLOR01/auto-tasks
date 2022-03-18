@@ -62,6 +62,7 @@ public class ResponseMapper {
                 .id(taskEntity.getId())
                 .status(taskEntity.getStatus())
                 .header(taskEntity.getHeader())
+                .authorUser(userShortFromEntity(taskEntity.getAuthorUser()))
                 .assignedUser(userShortFromEntity(taskEntity.getAssignedUser()))
                 .inspirationDate(taskEntity.getInspirationDate());
         taskEntity.getTags().forEach(tag -> {
@@ -115,6 +116,15 @@ public class ResponseMapper {
         return responseBuilder.build();
     }
 
+    public static ResponseDto.Page<ResponseDto.TaskShort> taskPageFromDomain(Page<Task> page) {
+        ResponseDto.Page.PageBuilder<ResponseDto.TaskShort> responseBuilder =
+                buildPageInfo(page, ResponseDto.TaskShort.class);
+        page.getContent().forEach(task -> {
+            responseBuilder.element(taskShortFromEntity(task));
+        });
+        return responseBuilder.build();
+    }
+
     private static <T> ResponseDto.Page.PageBuilder<T> buildPageInfo(Page<?> page, Class<T> type) {
         return ResponseDto.Page.<T>builder()
                 .pageNumber(page.getNumber() + 1)
@@ -122,4 +132,5 @@ public class ResponseMapper {
                 .totalPages(page.getTotalPages())
                 .totalElements(page.getTotalElements());
     }
+
 }

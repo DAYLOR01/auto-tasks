@@ -44,4 +44,13 @@ public class TaskController {
     public ResponseDto.TaskShort changeStatus(Principal principal, @RequestBody RequestDto.TaskChangeStatus taskChangeStatus) {
         return taskFacade.changeStatus(principal.getName(), taskChangeStatus);
     }
+
+    @GetMapping(value = "/page", params = {"pageNumber", "pageSize"})
+    public ResponseDto.Page<ResponseDto.TaskShort> getPage(
+            Principal principal,
+            @RequestParam int pageNumber,
+            @RequestParam int pageSize
+    ) {
+        return taskFacade.getTasksByUsername(principal.getName(), pageNumber, pageSize);
+    }
 }

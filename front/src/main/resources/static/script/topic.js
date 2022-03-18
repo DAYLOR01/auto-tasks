@@ -1,7 +1,7 @@
 const topicsDiv = document.getElementById('topics');
 const loadMoreBtn = document.getElementById('loadMore');
 const newTopicBtn = document.getElementById('newTopic');
-var pageNumber = 1;
+let pageNumber = 1;
 const pageSize = 10;
 
 document.addEventListener('DOMContentLoaded', function (){

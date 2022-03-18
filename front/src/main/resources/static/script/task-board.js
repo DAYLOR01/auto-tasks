@@ -30,9 +30,19 @@ const loadMyTasksToStack = (status, lastMonth, stackElement) => {
         .then(function(output){
             let innerContent = ""
             for (const task of output) {
+                let cardColor;
+                let inspDate = new Date(task.inspirationDate).toLocaleDateString(),
+                    today = new Date().toLocaleDateString();
+                if (task.status === 'COMPLETED' || task.status === 'CLOSED')
+                    cardColor = "secondary"
+                else if (inspDate === today)
+                    cardColor = "warning"
+                else if (inspDate < today)
+                    cardColor = "danger"
+                else cardColor = "primary"
                 innerContent += `
-                <div class="card border-primary mb-1">
-                    <div class="card-header">
+                <div class="card border-${cardColor} mb-1">
+                    <div class="card-header bg-${cardColor}" style="--bs-bg-opacity: .2;">
                         <a href="/tasks?id=${task.id}" class="card-link">#${task.id}</a>
                     </div>
                     <div class="card-body pb-0">

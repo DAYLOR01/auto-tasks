@@ -24,6 +24,6 @@ public class TaskHistoryServiceImpl implements TaskHistoryService {
 
     @Override
     public List<TaskHistory> findAllByTaskId(long taskId) {
-        return taskHistoryRepository.findAllByTask_Id(taskId, Sort.by("created_at"));
+        return taskHistoryRepository.findAllByTask_Id(taskId, Sort.by("createdAt"));
     }
 }

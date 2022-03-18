@@ -43,7 +43,7 @@ public class PageController {
 
     @GetMapping("/tasks")
     public String taskList() {
-        return "tasks";
+        return "task-list";
     }
 
     @GetMapping("/tasks/new")

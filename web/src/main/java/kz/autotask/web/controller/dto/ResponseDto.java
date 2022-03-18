@@ -64,6 +64,7 @@ public class ResponseDto {
     public static class TaskShort {
         private long id;
         private String header;
+        private UserShort authorUser;
         private UserShort assignedUser;
         private TaskStatus status;
         @Singular private List<TagFull> tags;

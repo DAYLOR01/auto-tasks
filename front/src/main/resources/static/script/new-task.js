@@ -72,8 +72,8 @@ const loadUsersByTagsAndRole = () => {
     let mainTagsArray = Array.from(mainTags.querySelectorAll("option:checked"),e=>e.value)
     if (mainTagsArray.length === 0)
         return;
-    let tags = Array.from(mainTagsArray);
-    tags.concat(Array.from(assigneeSecondaryTags.querySelectorAll("option:checked"),e=>e.value));
+    let tags = Array.from(mainTagsArray)
+        .concat(Array.from(assigneeSecondaryTags.querySelectorAll("option:checked"),e=>e.value));
     let role = assigneeRole.querySelector("option:checked").value
     let queryParams = `tagIds=${tags.join()}&roleId=${role}`
     fetch(`${apiUrl}/users/least-loaded?${queryParams}`, {
@@ -96,10 +96,11 @@ const loadUsersByTagsAndRole = () => {
         })
 }
 
-const saveTask = () => {
+const saveTask = async () => {
     taskHeader.classList.remove('is-invalid')
     mainTags.classList.remove('is-invalid')
     chooseAssignee.classList.remove('is-invalid')
+    autoChooseAssignee.classList.remove('is-invalid')
     let headerValue = taskHeader.value;
     let text = taskText.value;
     let inspDate = inspirationDate.value ? new Date(inspirationDate.value) : null;
@@ -123,6 +124,15 @@ const saveTask = () => {
     }
     if(!(autoAssign || assignee)) {
         chooseAssignee.classList.add('is-invalid')
+        return;
+    }
+    let queryParams = `tagIds=${assigneeTags.join()}&roleId=${role}`
+    let request = new XMLHttpRequest();
+    request.open('GET', `${apiUrl}/users/has?${queryParams}`, false);
+    request.setRequestHeader('Authorization', header.get('Authorization'));
+    request.send(null);
+    if (request.status !== 200) {
+        autoChooseAssignee.parentElement.classList.add('is-invalid');
         return;
     }
     fetch(`${apiUrl}/tasks`, {

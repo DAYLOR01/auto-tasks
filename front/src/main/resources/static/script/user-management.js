@@ -173,7 +173,7 @@ const createNewUser = () => {
             return value.json();
         })
         .then(function(output){
-            window.location.href(`${baseUrl}/users/${output.username}`)
+            window.location.href = `${baseUrl}/users/${output.username}`
         })
         .catch(function(reason){
             console.log('error: ' + reason)

@@ -13,6 +13,10 @@ import kz.autotask.web.service.TagService;
 import kz.autotask.web.service.TaskHistoryService;
 import kz.autotask.web.service.TaskService;
 import kz.autotask.web.service.UserService;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 
 import java.sql.Timestamp;
@@ -69,10 +73,10 @@ public class TaskFacadeImpl implements TaskFacade {
         taskEntity.setAuthorUser(userService.findByUsername(authorUsername));
         User assignedUser;
         if(task.isAutoAssignUser()) {
-            assignedUser = userService.findLeastLoadedUsers(
+            assignedUser = userService.findOneLeastLoadedUser(
                     task.getAssignedUserTagIds(),
                     task.getAssignedUserRole()
-            ).get(0);
+            );
         }
         else {
             assignedUser = userService.findByUsername(task.getAssignedUser());
@@ -99,6 +103,13 @@ public class TaskFacadeImpl implements TaskFacade {
         taskHistory.setCreatedBy(userService.findByUsername(username));
         taskHistory.setCreatedAt(Timestamp.from(Instant.now()));
         taskHistoryService.create(taskHistory);
+    }
+
+    @Override
+    public ResponseDto.Page<ResponseDto.TaskShort> getTasksByUsername(String username, int pageNumber, int pageSize) {
+        Pageable pageRequest = PageRequest.of(pageNumber - 1, pageSize, Sort.by(Sort.Direction.DESC, "updatedAt", "id"));
+        Page<Task> pageDomain = taskService.getPageByAuthorOrAssignee(username, username, pageRequest);
+        return ResponseMapper.taskPageFromDomain(pageDomain);
     }
 
 }

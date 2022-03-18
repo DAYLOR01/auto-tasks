@@ -56,7 +56,19 @@ public class UserController {
         return userFacade.findLeastLoadedUsers(tagIds, roleId);
     }
 
-    @GetMapping
+    @GetMapping("/has")
+    public ResponseDto.Message hasUsersByTagsAndRole(
+            @RequestParam Integer[] tagIds,
+            @RequestParam int roleId,
+            HttpServletResponse response
+    ) {
+        long count = userFacade.countUsersByTagsAndRole(tagIds, roleId);
+        String message = "There is " + (count != 0 ? count : "no") + " users with this tags and role";
+        if(count == 0) {
+            response.setStatus(404);
+        }
+        return ResponseDto.Message.builder().message(message).build();
+    }
 
     @Secured("ROLE_USER_MANAGEMENT")
     @PostMapping

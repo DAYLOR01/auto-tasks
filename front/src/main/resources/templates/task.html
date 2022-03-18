@@ -6,7 +6,7 @@
 <body class="d-flex flex-column h-100">
 <nav th:replace="fragments.html :: navbar(authorized=true)"></nav>
 
-<div class="container py-3 h-100" id="content">
+<div class="container py-3" id="content">
     <div class="row justify-content-center">
         <div class="col-sm-8">
             <p class="fs-5">
@@ -17,10 +17,20 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-sm-5">
-            <h2 id="taskHeader"></h2>
-            <p class="fs-4" id="taskText">
-            </p>
+            <div>
+                <h2 id="taskHeader"></h2>
+                <p class="fs-4" id="taskText">
+                </p>
+            </div>
             <div id="taskHistory"></div>
+            <div class="form-floating mb-3">
+                <textarea class="form-control" placeholder="Комментарий" id="commentary" style="height: 120px"></textarea>
+                <label for="commentary">Комментарий</label>
+                <div class="invalid-feedback">Текст комментария не может быть пустым</div>
+            </div>
+            <div>
+                <button class="btn btn-success" id="saveCommentary">Сохранить комментарий</button>
+            </div>
         </div>
         <div class="col-sm-3 order-first order-sm-last">
             <h4>Тэги</h4>

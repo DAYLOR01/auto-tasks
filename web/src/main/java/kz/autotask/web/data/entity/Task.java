@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -38,6 +39,8 @@ public class Task {
 
     @Enumerated(EnumType.STRING)
     private TaskStatus status;
+
+    private Timestamp updatedAt;
 
     @OneToMany(mappedBy = "task")
     private List<TaskHistory> history;

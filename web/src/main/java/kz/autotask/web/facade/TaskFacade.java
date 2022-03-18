@@ -16,4 +16,6 @@ public interface TaskFacade {
     ResponseDto.TaskShort save(String authorUsername, RequestDto.TaskFull task);
 
     ResponseDto.TaskShort changeStatus(String username, RequestDto.TaskChangeStatus taskChangeStatus);
+
+    ResponseDto.Page<ResponseDto.TaskShort> getTasksByUsername(String username, int pageNumber, int pageSize);
 }
