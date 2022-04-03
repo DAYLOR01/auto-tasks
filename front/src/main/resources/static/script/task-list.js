@@ -30,13 +30,14 @@ const loadTasks = () => {
             for (const task of output.elements) {
                 let innerContent = ""
                 let itemStyle;
-                let inspDate = new Date(task.inspirationDate).toLocaleDateString(),
-                    today = new Date().toLocaleDateString();
+                let inspDate = task.inspirationDate ? new Date(task.inspirationDate).setHours(0, 0, 0, 0) : null,
+                    today = new Date().setHours(0, 0, 0, 0);
+                console.log(`${inspDate}, ${today}, ${inspDate < today}`)
                 if (task.status === 'COMPLETED' || task.status === 'CLOSED')
                     itemStyle = "list-group-item-secondary"
-                else if (inspDate === today)
+                else if (inspDate && inspDate === today)
                     itemStyle = "list-group-item-warning"
-                else if (inspDate < today)
+                else if (inspDate && inspDate < today)
                     itemStyle = "list-group-item-danger"
                 else itemStyle = ""
                 innerContent += `

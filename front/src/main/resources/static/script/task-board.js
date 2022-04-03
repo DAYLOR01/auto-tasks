@@ -31,13 +31,13 @@ const loadMyTasksToStack = (status, lastMonth, stackElement) => {
             let innerContent = ""
             for (const task of output) {
                 let cardColor;
-                let inspDate = new Date(task.inspirationDate).toLocaleDateString(),
-                    today = new Date().toLocaleDateString();
+                let inspDate = task.inspirationDate ? new Date(task.inspirationDate).setHours(0, 0, 0, 0) : null,
+                    today = new Date().setHours(0, 0, 0, 0);
                 if (task.status === 'COMPLETED' || task.status === 'CLOSED')
                     cardColor = "secondary"
-                else if (inspDate === today)
+                else if (inspDate && inspDate === today)
                     cardColor = "warning"
-                else if (inspDate < today)
+                else if (inspDate && inspDate < today)
                     cardColor = "danger"
                 else cardColor = "primary"
                 innerContent += `
