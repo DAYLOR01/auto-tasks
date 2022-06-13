@@ -17,19 +17,19 @@
             <div class="d-flex justify-content-between">
                 <p class="fs-5 m-0 text-uppercase" id="usersUsername" th:text="${username}"></p>
                 <div class="btn-toolbox">
-                    <button class="btn btn-outline-info" id="editUserOpenModal" data-bs-toggle="modal" data-bs-target="#editUserModal">Отредактировать</button>
-                    <button class="btn btn-outline-danger d-none" id="deactivateUser">Деактивировать</button>
-                    <button class="btn btn-outline-primary d-none" id="activateUser">Активировать</button>
+                    <button class="btn btn-outline-info" id="editUserOpenModal" data-bs-toggle="modal" data-bs-target="#editUserModal">Өзгерту</button>
+                    <button class="btn btn-outline-danger d-none" id="deactivateUser">Өшіру</button>
+                    <button class="btn btn-outline-primary d-none" id="activateUser">Белсендіру</button>
                 </div>
             </div>
             <div class="mt-5">
-                <p class="h3">Роли и привилегии</p>
+                <p class="h3">Рөлдермен артықшылықтар</p>
                 <div class="d-flex flex-wrap" id="usersRoles">
                 </div>
             </div>
         </div>
         <div class="col-sm-3">
-            <p class="h3">Тэги</p>
+            <p class="h3">Тегтер</p>
             <ul class="list-group" id="usersTags">
             </ul>
         </div>
@@ -40,34 +40,34 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Отредактировать пользователя</h5>
+                <h5 class="modal-title">Пайдаланушыны өзгерту</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                 <div class="row justify-content-center">
                     <div class="col-sm-6">
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="newName" placeholder="Полное имя">
+                            <input type="text" class="form-control" id="newName" placeholder="Толық аты">
                         </div>
                         <div class="mb-3">
-                            <input type="password" autocomplete="new-password" class="form-control" id="newPassword" placeholder="Новый пароль">
+                            <input type="password" autocomplete="new-password" class="form-control" id="newPassword" placeholder="Жаңа құпия сөз">
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="mb-2">
-                            <label class="form-label" for="newMainTags">Основные тэги:</label>
+                            <label class="form-label" for="newMainTags">Басты тегтер:</label>
                             <select class="form-select" size="2" multiple id="newMainTags">
 
                             </select>
                         </div>
                         <div class="mb-2">
-                            <label class="form-label" for="newSecondaryTags">Вторичные тэги:</label>
+                            <label class="form-label" for="newSecondaryTags">Қосымша тегтер:</label>
                             <select class="form-select" size="3" multiple id="newSecondaryTags">
 
                             </select>
                         </div>
                         <div class="mb-2">
-                            <label class="form-label" for="newRoles">Роли:</label>
+                            <label class="form-label" for="newRoles">Рөлдер:</label>
                             <select class="form-select" size="5" multiple id="newRoles">
 
                             </select>
@@ -76,8 +76,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Отмена</button>
-                <button type="button" class="btn btn-success" id="editUser">Сохранить изменения</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Қайтару</button>
+                <button type="button" class="btn btn-success" id="editUser">Өзгерістерді сақтау</button>
             </div>
         </div>
     </div>

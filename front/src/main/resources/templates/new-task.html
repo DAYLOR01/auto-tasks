@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments.html :: head(title='Создать задачу')"/>
+    <th:block th:replace="fragments.html :: head(title='Жаңа тапсырма')"/>
     <link href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css" rel="stylesheet" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker-full.min.js"></script>
 </head>
@@ -12,15 +12,15 @@
     <div class="row justify-content-center">
         <div class="col-sm-8">
             <div class="mb-3">
-                <input type="text" class="form-control form-control-lg" id="taskHeader" placeholder="Заголовок задачи">
-                <div class="invalid-feedback">Введите заголовок</div>
+                <input type="text" class="form-control form-control-lg" id="taskHeader" placeholder="Тапсырма тақырыбы">
+                <div class="invalid-feedback">Тақырыпты енгізіңіз</div>
             </div>
         </div>
     </div>
     <div class="row justify-content-center">
         <div class="col-sm-5">
             <div class="mb-3">
-                <label for="taskText" class="form-label">Текст задачи</label>
+                <label for="taskText" class="form-label">Тапсырма мәтіні</label>
                 <textarea class="form-control" id="taskText" rows="10"></textarea>
             </div>
             <div class="form-floating mb-3 d-flex">
@@ -30,51 +30,51 @@
                         id="inspirationDate"
                         required
                         placeholder="YYYY.MM.DD">
-                <label for="inspirationDate">Крайний срок</label>
+                <label for="inspirationDate">Мерзімі</label>
             </div>
             <div class="d-grid gap-2">
-                <button class="btn btn-primary" type="button" id="saveTask">Сохранить</button>
+                <button class="btn btn-primary" type="button" id="saveTask">Сақтау</button>
             </div>
         </div>
         <div class="col-sm-3 order-first order-sm-last">
             <div class="mb-2">
-                <label class="form-label" for="mainTags">Основные тэги:</label>
+                <label class="form-label" for="mainTags">Негізгі тегтер:</label>
                 <select class="form-select" size="2" multiple id="mainTags">
 
                 </select>
-                <div class="invalid-feedback">Выберите один или более основных тэгов</div>
+                <div class="invalid-feedback">Бір немесе бірнеше негізгі тегтерді таңдаңыз</div>
             </div>
             <div class="mb-2">
-                <label class="form-label" for="taskSecondaryTags">Вторичные тэги задачи:</label>
+                <label class="form-label" for="taskSecondaryTags">тапсырманың қосымша тегтері:</label>
                 <select class="form-select" size="3" multiple id="taskSecondaryTags">
 
                 </select>
             </div>
             <div class="mb-2">
-                <label class="form-label" for="assigneeSecondaryTags">Вторичные тэги исполнителя:</label>
+                <label class="form-label" for="assigneeSecondaryTags">орындаушының Қосымша тегтері:</label>
                 <select class="form-select" size="3" multiple id="assigneeSecondaryTags">
 
                 </select>
             </div>
             <div class="mb-2">
-                <label class="form-label" for="assigneeRole">Роль исполнителя:</label>
+                <label class="form-label" for="assigneeRole">Орындаушының рөлі:</label>
                 <select class="form-select" id="assigneeRole">
 
                 </select>
             </div>
             <div class="mb-3">
-                <label class="form-label" for="chooseAssignee">Назначить исполнителя</label>
+                <label class="form-label" for="chooseAssignee">Орындаушыны тағайындау</label>
                 <div>
                     <div class="form-check form-switch">
                         <input class="form-check-input" type="checkbox" role="switch" id="autoChooseAssignee" checked>
-                        <label class="form-check-label" for="autoChooseAssignee">Назначить автоматически</label>
+                        <label class="form-check-label" for="autoChooseAssignee">Автоматты түрде тағайындау</label>
                     </div>
-                    <div class="invalid-feedback">Исполнитель по выбранным тэгам и роли не найден</div>
+                    <div class="invalid-feedback">Таңдалған тегтер мен рөлге сәйкес орындаушы табылмады</div>
                 </div>
                 <select class="form-select" id="chooseAssignee">
 
                 </select>
-                <div class="invalid-feedback">Выберите исполнителя</div>
+                <div class="invalid-feedback">Орындаушыны таңдаңыз</div>
             </div>
         </div>
     </div>

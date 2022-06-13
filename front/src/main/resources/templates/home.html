@@ -1,19 +1,19 @@
 <!DOCTYPE html>
 <html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments.html :: head(title='Новости')"/>
+    <th:block th:replace="fragments.html :: head(title='Жаңалықтар')"/>
 </head>
 <body class="d-flex flex-column h-100">
     <nav th:replace="fragments.html :: navbar(authorized=true)"></nav>
 
     <div class="container mt-5 mb-5" id="content">
         <div class="d-flex ms-4 me-4 justify-content-between">
-            <h1>Новости</h1>
-            <button type="button" class="btn btn-outline-primary rounded-pill" id="newTopic">Новая запись</button>
+            <h1>Жаңалықтар</h1>
+            <button type="button" class="btn btn-outline-primary rounded-pill" id="newTopic">Жаңа жазба</button>
         </div>
         <div class="container-fluid p-0 mt-4" id="topics"></div>
         <div class="d-grid gap-2 col-6 mx-auto">
-            <button class="btn btn-outline-secondary" type="button" id="loadMore" disabled>Загрузить еще...</button>
+            <button class="btn btn-outline-secondary" type="button" id="loadMore" disabled>Тағы жүктеу...</button>
         </div>
     </div>
 

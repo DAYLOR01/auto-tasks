@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments.html :: head(title='Доска задач')"/>
+    <th:block th:replace="fragments.html :: head(title='Тапсырмалар тақтасы')"/>
 </head>
 <body class="d-flex flex-column h-100">
 <nav th:replace="fragments.html :: navbar(authorized=true)"></nav>
@@ -9,31 +9,31 @@
 <div class="container-fluid" id="content">
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5" style="min-height: 100%;">
         <div class="col px-0">
-            <div class="bg-primary p-2 text-dark bg-opacity-25">Открыта</div>
+            <div class="bg-primary p-2 text-dark bg-opacity-25">Ашық</div>
             <div class="vstack px-1 mt-1" id="openTasks">
 
             </div>
         </div>
         <div class="col px-0">
-            <div class="bg-primary p-2 text-dark bg-opacity-25">В процессе</div>
+            <div class="bg-primary p-2 text-dark bg-opacity-25">Орындалуда</div>
             <div class="vstack px-1 mt-1" id="inProgressTasks">
 
             </div>
         </div>
         <div class="col px-0">
-            <div class="bg-primary p-2 text-dark bg-opacity-25">На проверке</div>
+            <div class="bg-primary p-2 text-dark bg-opacity-25">Тексеруде</div>
             <div class="vstack px-1 mt-1" id="underReviewTasks">
 
             </div>
         </div>
         <div class="col px-0">
-            <div class="bg-primary p-2 text-dark bg-opacity-25">Завершена</div>
+            <div class="bg-primary p-2 text-dark bg-opacity-25">Аяқталды</div>
             <div class="vstack px-1 mt-1" id="completedTasks">
 
             </div>
         </div>
         <div class="col px-0">
-            <div class="bg-primary p-2 text-dark bg-opacity-25">Отменена</div>
+            <div class="bg-primary p-2 text-dark bg-opacity-25">Жабық</div>
             <div class="vstack px-1 mt-1" id="closedTasks">
 
             </div>

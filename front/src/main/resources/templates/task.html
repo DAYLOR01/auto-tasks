@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments.html :: head(title='Задача #'+${taskId})"/>
+    <th:block th:replace="fragments.html :: head(title='#'+${taskId}+' тапсырма')"/>
 </head>
 <body class="d-flex flex-column h-100">
 <nav th:replace="fragments.html :: navbar(authorized=true)"></nav>
@@ -25,27 +25,27 @@
             <div id="taskHistory"></div>
             <div class="form-floating mb-3">
                 <textarea class="form-control" placeholder="Комментарий" id="commentary" style="height: 120px"></textarea>
-                <label for="commentary">Комментарий</label>
-                <div class="invalid-feedback">Текст комментария не может быть пустым</div>
+                <label for="commentary">Түсініктеме</label>
+                <div class="invalid-feedback">Түсініктеме мәтіні бос болмауы керек</div>
             </div>
             <div>
-                <button class="btn btn-success" id="saveCommentary">Сохранить комментарий</button>
+                <button class="btn btn-success" id="saveCommentary">Түсініктемені сақтау</button>
             </div>
         </div>
         <div class="col-sm-3 order-first order-sm-last">
-            <h4>Тэги</h4>
+            <h4>Тегтер</h4>
             <ul class="list-group" id="taskTags">
             </ul>
             <p><label for="taskStatus">Статус:</label> <select class="form-select" id="taskStatus">
-                <option value="OPEN">Открыта</option>
-                <option value="IN_PROGRESS">В процессе</option>
-                <option value="UNDER_REVIEW">На проверке</option>
-                <option value="COMPLETED">Завершена</option>
-                <option value="CLOSED">Отменена</option>
+                <option value="OPEN">Ашық</option>
+                <option value="IN_PROGRESS">Орындалуда</option>
+                <option value="UNDER_REVIEW">Тексеруде</option>
+                <option value="COMPLETED">Аяқталды</option>
+                <option value="CLOSED">Жабық</option>
             </select></p>
-            <p>Испольнитель: <span id="taskAssignedUser"></span></p>
-            <p>Крайний срок: <span id="taskInspirationDate"></span></p>
-            <p>Дата завершения: <span id="taskCompletionDate"></span></p>
+            <p>Орындаушы: <span id="taskAssignedUser"></span></p>
+            <p>Мерзімі: <span id="taskInspirationDate"></span></p>
+            <p>Аяқтау күні: <span id="taskCompletionDate"></span></p>
         </div>
     </div>
 </div>

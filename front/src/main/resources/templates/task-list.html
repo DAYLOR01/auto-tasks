@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments.html :: head(title='Мои задачи')"/>
+    <th:block th:replace="fragments.html :: head(title='Менің тапсырмаларым')"/>
 </head>
 <body class="d-flex flex-column h-100">
 <nav th:replace="fragments.html :: navbar(authorized=true)"></nav>
@@ -9,12 +9,12 @@
 <div class="container py-3" id="content">
     <div class="row justify-content-center">
         <div class="col-sm-8">
-            <h1>Мои задачи:</h1>
+            <h1>Менің тапсырмаларым:</h1>
             <ul class="list-group mb-3" id="taskList">
 
             </ul>
             <div class="d-grid gap-2 col-6 mx-auto">
-                <button class="btn btn-outline-secondary" type="button" id="loadMore" disabled>Загрузить еще...</button>
+                <button class="btn btn-outline-secondary" type="button" id="loadMore" disabled>Тағы жүктеу...</button>
             </div>
         </div>
     </div>

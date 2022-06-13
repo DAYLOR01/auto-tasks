@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments.html :: head(title='Управление пользователями')"/>
+    <th:block th:replace="fragments.html :: head(title='Пайдаланушыларды басқару')"/>
     <link href="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/css/datepicker.min.css" rel="stylesheet" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.1.4/dist/js/datepicker-full.min.js"></script>
 </head>
@@ -12,16 +12,16 @@
     <div class="row justify-content-center">
         <div class="col-sm-8 col">
             <div class="d-flex justify-content-between">
-                <h1>Пользователи:</h1>
+                <h1>Пайдаланушылар:</h1>
                 <button type="button" class="btn btn-outline-primary rounded-pill" id="newUserOpenModal"
                         data-bs-toggle="modal" data-bs-target="#newUserModal">
-                    Создать
+                    Жасау
                 </button>
             </div>
             <table class="table">
                 <thead>
                 <tr>
-                    <th scope="col">Id</th>
+                    <th scope="col">ID</th>
                     <th scope="col">Username</th>
                     <th scope="col">Name</th>
                     <th scope="col">Is active</th>
@@ -50,39 +50,39 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Создание пользователя</h5>
+                    <h5 class="modal-title">Пайдаланушыны жасау</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                 <div class="row justify-content-center">
                     <div class="col-sm-6">
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="newUsername" placeholder="Псевдоним">
-                            <div class="invalid-feedback">Псевдоним не может быть пустым</div>
+                            <input type="text" class="form-control" id="newUsername" placeholder="Пайдаланушының аты">
+                            <div class="invalid-feedback">Пайдаланушының аты бос болуы мүмкін емес</div>
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" id="newName" placeholder="Полное имя">
+                            <input type="text" class="form-control" id="newName" placeholder="Толық аты">
                         </div>
                         <div class="mb-3">
-                            <input type="password" autocomplete="new-password" class="form-control" id="newPassword" placeholder="Пароль">
-                            <div class="invalid-feedback">Пароль не может быть пустым</div>
+                            <input type="password" autocomplete="new-password" class="form-control" id="newPassword" placeholder="Құпия сөз">
+                            <div class="invalid-feedback">Құпия сөз бос болмауы керек</div>
                         </div>
                     </div>
                     <div class="col-sm-4">
                         <div class="mb-2">
-                            <label class="form-label" for="newMainTags">Основные тэги:</label>
+                            <label class="form-label" for="newMainTags">Негізгі тегтер:</label>
                             <select class="form-select" size="2" multiple id="newMainTags">
 
                             </select>
                         </div>
                         <div class="mb-2">
-                            <label class="form-label" for="newSecondaryTags">Вторичные тэги:</label>
+                            <label class="form-label" for="newSecondaryTags">Қосымша тегтер:</label>
                             <select class="form-select" size="3" multiple id="newSecondaryTags">
 
                             </select>
                         </div>
                         <div class="mb-2">
-                            <label class="form-label" for="newRoles">Роли:</label>
+                            <label class="form-label" for="newRoles">Рөлдер:</label>
                             <select class="form-select" size="5" multiple id="newRoles">
 
                             </select>
@@ -91,8 +91,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Отмена</button>
-                <button type="button" class="btn btn-success" id="createNewUser">Создать пользователя</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Қайтару</button>
+                <button type="button" class="btn btn-success" id="createNewUser">Пайдаланушыны жасау</button>
             </div>
         </div>
     </div>

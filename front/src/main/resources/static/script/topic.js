@@ -55,14 +55,14 @@ const createNewTopic = () => {
         <div class="bg-light p-4 mb-4 rounded border border-2 border-secondary">
             <form>
                 <div class="mb-3">
-                    <input type="text" class="form-control form-control-lg" id="topicHeader" maxlength="150" placeholder="Заголовок">
+                    <input type="text" class="form-control form-control-lg" id="topicHeader" maxlength="150" placeholder="Тақырыбы">
                 </div>
                 <div class="mb-3">
-                    <textarea type="text" class="form-control" id="topicContent" rows="4" placeholder="Текст"></textarea>
+                    <textarea type="text" class="form-control" id="topicContent" rows="4" placeholder="Мәтін"></textarea>
                 </div>
                 <div class="mb-3">
-                    <button type="button" class="btn btn-danger" id="cancelNewTopic">Отмена</button>
-                    <button type="button" class="btn btn-success" id="saveTopic">Сохранить</button>
+                    <button type="button" class="btn btn-danger" id="cancelNewTopic">Қайтару</button>
+                    <button type="button" class="btn btn-success" id="saveTopic">Сақтау</button>
                 </div>
             </form>
         </div>

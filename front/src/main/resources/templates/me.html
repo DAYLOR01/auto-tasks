@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru" class="h-100" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:replace="fragments.html :: head(title='Моя учетная запись')"/>
+    <th:block th:replace="fragments.html :: head(title='Менің тіркеу жазбам')"/>
 </head>
 <body class="d-flex flex-column h-100">
 <nav th:replace="fragments.html :: navbar(authorized=true)"></nav>
@@ -16,16 +16,16 @@
         <div class="col-sm-5">
             <div class="d-flex justify-content-between">
                 <p class="fs-5 m-0 text-uppercase" id="myUsername"></p>
-                <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Сменить пароль</button>
+                <button class="btn btn-outline-info" data-bs-toggle="modal" data-bs-target="#changePasswordModal">Құпия сөзін өзгерту</button>
             </div>
             <div class="mt-5">
-                <p class="h3">Роли и привилегии</p>
+                <p class="h3">Рөлдермен артықшылықтар</p>
                 <div class="d-flex flex-wrap" id="myRoles">
                 </div>
             </div>
         </div>
         <div class="col-sm-3">
-            <p class="h3">Тэги</p>
+            <p class="h3">Тегтер</p>
             <ul class="list-group" id="myTags">
             </ul>
         </div>
@@ -36,28 +36,28 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Сменить пароль</h5>
+                <h5 class="modal-title">Құпия сөзін өзгерту</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                 <form>
                     <div class="mb-3">
                         <input type="password" class="form-control" id="oldPassword" placeholder="Старый пароль">
-                        <div class="invalid-feedback">Неверный пароль</div>
+                        <div class="invalid-feedback">Қате құпия сөз</div>
                     </div>
                     <div class="mb-3">
                         <input type="password" class="form-control" id="newPassword" placeholder="Новый пароль">
-                        <div class="invalid-feedback">Введите новый пароль</div>
+                        <div class="invalid-feedback">Жаңа құпия сөзді енгізіңіз</div>
                     </div>
                     <div class="mb-3">
                         <input type="password" class="form-control" id="confirmPassword" placeholder="Подтвердите новый пароль">
-                        <div class="invalid-feedback">Пароли не совпадают</div>
+                        <div class="invalid-feedback">Құпия сөздер сәйкес келмейді</div>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Отмена</button>
-                <button type="button" class="btn btn-success" id="changePassword">Сменить пароль</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Қайтару</button>
+                <button type="button" class="btn btn-success" id="changePassword">Құпия сөзін өзгерту</button>
             </div>
         </div>
     </div>
