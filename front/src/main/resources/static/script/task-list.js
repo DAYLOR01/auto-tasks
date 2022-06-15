@@ -1,11 +1,11 @@
 const taskList = document.getElementById('taskList')
 const loadMoreBtn = document.getElementById('loadMore')
 const taskStatusMap = {
-    OPEN: "Открыта",
-    IN_PROGRESS: "В процессе",
-    UNDER_REVIEW: "На проверке",
-    COMPLETED: "Завершена",
-    CLOSED: "Отменена"
+    OPEN: "Ашық",
+    IN_PROGRESS: "Орындалуда",
+    UNDER_REVIEW: "Тексеруде",
+    COMPLETED: "Аяқталды",
+    CLOSED: "Жабық"
 }
 let pageNumber = 1;
 const pageSize = 10;
@@ -42,7 +42,7 @@ const loadTasks = () => {
                 else itemStyle = ""
                 innerContent += `
                 <li class="list-group-item ${itemStyle}">
-                    <p class="h5"><a href="/tasks?id=${task.id}">#${task.id}</a> Создана ${task.authorUser.name}. Назначена на ${task.assignedUser.name}. ${taskStatusMap[task.status]}</p>
+                    <p class="h5"><a href="/tasks?id=${task.id}">#${task.id}</a> Жасады: ${task.authorUser.name}. Орындаушы: ${task.assignedUser.name}. ${taskStatusMap[task.status]}</p>
                     <p class="fs-5">${task.header}</p>
                     <div class="row row-cols-lg-5 row-cols-2">
                 `

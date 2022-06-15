@@ -12,11 +12,11 @@ const taskInspirationDate = document.getElementById('taskInspirationDate');
 const taskCompletionDate = document.getElementById('taskCompletionDate');
 const taskId = (new URLSearchParams(window.location.search)).get('id');
 const taskStatusMap = {
-    OPEN: "Открыта",
-    IN_PROGRESS: "В процессе",
-    UNDER_REVIEW: "На проверке",
-    COMPLETED: "Завершена",
-    CLOSED: "Отменена"
+    OPEN: "Ашық",
+    IN_PROGRESS: "Орындалуда",
+    UNDER_REVIEW: "Тексеруде",
+    COMPLETED: "Аяқталды",
+    CLOSED: "Жабық"
 }
 let currentStatus;
 
@@ -135,11 +135,11 @@ const reloadHistory = () => {
                 let upperText, lowerText, dateTime;
                 switch (historyEl.type) {
                     case "CHANGE_STATUS":
-                        upperText = `${historyEl.createdBy.name} изменил статус задачи:`
+                        upperText = `${historyEl.createdBy.name} тапсырманын статусын өзгертті:`
                         lowerText = taskStatusMap[historyEl.value]
                         break;
                     case "ADD_COMMENTARY":
-                        upperText = `${historyEl.createdBy.name} добавил комментарий:`
+                        upperText = `${historyEl.createdBy.name} түсініктеме жазды:`
                         lowerText = `${historyEl.value.replace('\n','<br/>')}`
                         break;
                 }
